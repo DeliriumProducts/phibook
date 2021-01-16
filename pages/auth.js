@@ -39,11 +39,13 @@ const firebaseAuthConfig = {
 
 const LoginForm = () => {
   const router = useRouter()
+  const [loading, setLoading] = React.useState(false)
   const { register, handleSubmit, errors, reset } = useForm({
     reValidateMode: "onBlur",
   })
   const bg = useColorModeValue("gray.200", "gray.800")
   const onSubmit = (values) => {
+    setLoading(true)
     auth()
       .signInWithEmailAndPassword(values["email"], values["pass"])
       .then(() => router.push("/"))
@@ -51,6 +53,7 @@ const LoginForm = () => {
         alert(err)
         reset()
       })
+      .finally(() => setLoading(true))
   }
 
   return (
@@ -101,6 +104,7 @@ const LoginForm = () => {
         leftIcon={<BiLogIn />}
         type="submit"
         my={2}
+        isLoading={loading}
         bg={bg}
         w="100%"
         size="lg"
@@ -118,8 +122,10 @@ const RegisterForm = () => {
   const { register, handleSubmit, errors, reset } = useForm({
     reValidateMode: "onBlur",
   })
+  const [loading, setLoading] = React.useState(false)
   const bg = useColorModeValue("gray.200", "gray.800")
   const onSubmit = (values) => {
+    setLoading(true)
     auth()
       .createUserWithEmailAndPassword(values.email, values.pass)
       .then(() => router.push("/"))
@@ -127,6 +133,7 @@ const RegisterForm = () => {
         alert(err)
         reset()
       })
+      .finally(() => setLoading(false))
   }
 
   return (
@@ -251,6 +258,7 @@ const RegisterForm = () => {
         my={2}
         w="100%"
         size="lg"
+        isLoading={loading}
         rounded="lg"
         padding="10px"
       >
