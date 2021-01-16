@@ -1,5 +1,5 @@
-import { verifyIdToken } from '../../utils/auth/firebaseAdmin'
-const favoriteFoods = ['pizza', 'burger', 'chips', 'tortilla']
+import { verifyIdToken } from "../../utils/auth/firebaseAdmin"
+const favoriteFoods = ["pizza", "burger", "chips", "tortilla"]
 
 const getFood = async (req, res) => {
   const token = req.headers.token
@@ -10,7 +10,7 @@ const getFood = async (req, res) => {
       food: favoriteFoods[Math.floor(Math.random() * favoriteFoods.length)],
     })
   } catch (error) {
-    return res.status(401).send('You are unauthorised')
+    return res.status(401).send("You are unauthorised")
   }
 }
 

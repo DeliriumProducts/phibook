@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import initFirebase from '../auth/initFirebase'
+import firebase from "firebase/app"
+import "firebase/auth"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
+import { mapUserData } from "./mapUserData"
 import {
+  getUserFromCookie,
   removeUserCookie,
   setUserCookie,
-  getUserFromCookie,
-} from './userCookies'
-import { mapUserData } from './mapUserData'
-
-initFirebase()
+} from "./userCookies"
 
 const useUser = () => {
   const [user, setUser] = useState()
+  const [loading, setLoading] = useState(true)
   const router = useRouter()
 
   const logout = async () => {
@@ -22,7 +20,7 @@ const useUser = () => {
       .signOut()
       .then(() => {
         // Sign-out successful.
-        router.push('/auth')
+        router.push("/auth")
       })
       .catch((e) => {
         console.error(e)
@@ -40,15 +38,17 @@ const useUser = () => {
           const userData = await mapUserData(user)
           setUserCookie(userData)
           setUser(userData)
+          setLoading(false)
         } else {
           removeUserCookie()
           setUser()
+          setLoading(false)
         }
       })
 
     const userFromCookie = getUserFromCookie()
     if (!userFromCookie) {
-      router.push('/')
+      router.push("/auth")
       return
     }
     setUser(userFromCookie)
@@ -59,7 +59,7 @@ const useUser = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return { user, logout }
+  return { user, logout, loading }
 }
 
 export { useUser }
