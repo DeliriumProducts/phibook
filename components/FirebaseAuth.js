@@ -1,15 +1,15 @@
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import initFirebase from '../utils/auth/initFirebase'
-import { setUserCookie } from '../utils/auth/userCookies'
-import { mapUserData } from '../utils/auth/mapUserData'
+import firebase from "firebase/app"
+import "firebase/auth"
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+import initFirebase from "../utils/auth/initFirebase"
+import { mapUserData } from "../utils/auth/mapUserData"
+import { setUserCookie } from "../utils/auth/userCookies"
 
 // Init the Firebase app.
 initFirebase()
 
 const firebaseAuthConfig = {
-  signInFlow: 'popup',
+  signInFlow: "popup",
   // Auth providers
   // https://github.com/firebase/firebaseui-web#configure-oauth-providers
   signInOptions: [
@@ -18,8 +18,8 @@ const firebaseAuthConfig = {
       requireDisplayName: false,
     },
   ],
-  signInSuccessUrl: '/',
-  credentialHelper: 'none',
+  signInSuccessUrl: "/",
+  credentialHelper: "none",
   callbacks: {
     signInSuccessWithAuthResult: async ({ user }, redirectUrl) => {
       const userData = await mapUserData(user)
