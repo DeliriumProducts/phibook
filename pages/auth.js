@@ -246,6 +246,7 @@ const RegisterForm = () => {
         <Input
           ref={register({ required: true })}
           placeholder="phone number"
+          type="numeric"
           name="phone"
           size="lg"
           w="100%"
@@ -303,7 +304,14 @@ const FirebaseAuth = () => {
   }
 
   return (
-    <Flex w="70%" h="100%" justify="center" align="center" direction="column">
+    <Flex
+      w="100%"
+      minHeight="100%"
+      flexGrow={1}
+      justify="center"
+      align="center"
+      direction="column"
+    >
       <Box marginY={2}>
         <Text fontSize="6xl" as="b">
           phibook.

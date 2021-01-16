@@ -69,37 +69,37 @@ const Layout = ({ children }) => {
           </NextLink>
         </Flex>
         <Flex>
-          <NextLink href="/">
-            <Tooltip label="News" fontSize="md">
+          <Tooltip label="News" fontSize="md">
+            <NextLink href="/">
               <IconButton
                 size="md"
                 icon={<BsNewspaper />}
                 mr={2}
                 as="a"
-                variant={router.pathname === "/news" ? "solid" : "ghost"}
+                variant={router.pathname === "/" ? "solid" : "ghost"}
               />
-            </Tooltip>
-          </NextLink>
-          <NextLink href="/positions">
-            <Tooltip label="Job Positions" fontSize="md">
+            </NextLink>
+          </Tooltip>
+          <Tooltip label="Job Positions" fontSize="md">
+            <NextLink href="/positions">
               <IconButton
                 icon={<BsFillPeopleFill />}
                 mr={2}
                 as="a"
                 variant={router.pathname === "/positions" ? "solid" : "ghost"}
               />
-            </Tooltip>
-          </NextLink>
-          <NextLink href="/chat">
-            <Tooltip label="Chat" fontSize="md">
+            </NextLink>
+          </Tooltip>
+          <Tooltip label="Chat" fontSize="md">
+            <NextLink href="/chat">
               <IconButton
                 icon={<BsFillChatFill />}
                 mr={2}
                 as="a"
                 variant={router.pathname === "/chat" ? "solid" : "ghost"}
               />
-            </Tooltip>
-          </NextLink>
+            </NextLink>
+          </Tooltip>
         </Flex>
         <Flex px="1rem">
           <Button
