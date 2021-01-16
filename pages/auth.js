@@ -40,6 +40,7 @@ const firebaseAuthConfig = {
 
 const LoginForm = () => {
   const router = useRouter()
+  const toast = useToast()
   const [loading, setLoading] = React.useState(false)
   const { register, handleSubmit, errors, reset } = useForm({
     reValidateMode: "onBlur",
@@ -52,7 +53,10 @@ const LoginForm = () => {
       .signInWithEmailAndPassword(values["email"], values["pass"])
       .then(() => router.push("/"))
       .catch((err) => {
-        alert(err)
+        toast({
+          title: err.toString(),
+          status: "error",
+        })
         reset()
       })
       .finally(() => setLoading(true))
