@@ -42,28 +42,29 @@ const Layout = ({ children }) => {
       transition="background-color 0.2s"
     >
       <StickyNav
-        borderBottomWidth="1px"
         flexDir={{ base: "column", md: "row" }}
         bg={navBgColor}
         position={{ sm: "static", md: "sticky" }}
-        justifyContent="space-around"
+        justifyContent="space-between"
         alignItems="center"
         width="100%"
         as="nav"
         mx="auto"
       >
-        <NextLink href="/" passHref>
-          <LinkBox
-            justifyContent="space-between"
-            href="/"
-            display="flex"
-            alignItems="center"
-            flex={1}
-          >
-            <Heading ml="1rem">Φ</Heading>
-          </LinkBox>
-        </NextLink>
-        <Flex flex={2} justifyContent="space-between">
+        <Flex>
+          <NextLink href="/" passHref>
+            <LinkBox
+              justifyContent="space-between"
+              href="/"
+              display="flex"
+              alignItems="center"
+              flex={1}
+            >
+              <Heading ml="1rem">Φ</Heading>
+            </LinkBox>
+          </NextLink>
+        </Flex>
+        <Flex px="1rem">
           <Button
             onClick={logout}
             leftIcon={<Box as={BiLogOut} boxSize="1rem" />}

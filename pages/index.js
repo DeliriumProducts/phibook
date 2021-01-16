@@ -20,7 +20,7 @@ const Index = () => {
     fetcher
   )
   const router = useRouter()
-  const sideBarBg = useColorModeValue("gray.100", "gray.800")
+  const sideBarBg = useColorModeValue("white", "gray.800")
 
   if (loading || (!user && !loading)) {
     return (
