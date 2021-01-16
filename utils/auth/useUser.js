@@ -20,6 +20,8 @@ const useUser = () => {
       .signOut()
       .then(() => {
         // Sign-out successful.
+        setLoading(true)
+        setUser()
         router.push("/auth")
       })
       .catch((e) => {

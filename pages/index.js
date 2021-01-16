@@ -21,20 +21,18 @@ const Index = () => {
   )
   const router = useRouter()
 
-  React.useEffect(() => {
-    if (!user && !loading) {
-      router.push("/auth")
-    }
-  }, [user, loading])
-
   if (loading || (!user && !loading)) {
     return <Spinner />
+  }
+
+  if (!user && !loading) {
+    router.push("/auth")
   }
 
   return (
     <div>
       <div>
-        <p>You're signed in. Email: {user.email}</p>
+        <p>You're signed in. Email: {user?.email}</p>
         <p
           style={{
             display: "inline-block",

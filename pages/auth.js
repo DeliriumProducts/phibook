@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form"
 import { BiLogIn } from "react-icons/bi"
 import { mapUserData } from "../utils/auth/mapUserData"
 import { setUserCookie } from "../utils/auth/userCookies"
+import { useUser } from "../utils/auth/useUser"
 
 const firebaseAuthConfig = {
   signInFlow: "popup",
@@ -156,12 +157,12 @@ const RegisterForm = () => {
           </FormErrorMessage>
         </FormControl>
       </>
-      <FormControl isInvalid={errors.pass}>
+
+      <FormControl isInvalid={errors.firstName}>
         <Input
           ref={register({ required: true })}
-          placeholder="pass"
-          type="password"
-          name="pass"
+          placeholder="first name"
+          name="firstName"
           size="lg"
           w="100%"
           my={2}
@@ -171,7 +172,41 @@ const RegisterForm = () => {
           rounded="lg"
         />
         <FormErrorMessage>
-          {errors.pass && "password is required"}
+          {errors.firstName && "first name is required"}
+        </FormErrorMessage>
+      </FormControl>
+      <FormControl isInvalid={errors.middleName}>
+        <Input
+          ref={register({ required: true })}
+          placeholder="middle name"
+          name="middleName"
+          size="lg"
+          w="100%"
+          my={2}
+          padding="10px"
+          variant="filled"
+          bg={bg}
+          rounded="lg"
+        />
+        <FormErrorMessage>
+          {errors.middleName && "middle name is required"}
+        </FormErrorMessage>
+      </FormControl>
+      <FormControl isInvalid={errors.lastName}>
+        <Input
+          ref={register({ required: true })}
+          placeholder="last name"
+          name="lastName"
+          size="lg"
+          w="100%"
+          my={2}
+          padding="10px"
+          variant="filled"
+          bg={bg}
+          rounded="lg"
+        />
+        <FormErrorMessage>
+          {errors.lastName && "last name is required"}
         </FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={errors.workPosition}>
@@ -189,6 +224,24 @@ const RegisterForm = () => {
         />
         <FormErrorMessage>
           {errors.workPosition && "work position is required"}
+        </FormErrorMessage>
+      </FormControl>
+      <FormControl isInvalid={errors.pass}>
+        <Input
+          ref={register({ required: true })}
+          placeholder="pass"
+          type="password"
+          name="pass"
+          size="lg"
+          w="100%"
+          my={2}
+          padding="10px"
+          variant="filled"
+          bg={bg}
+          rounded="lg"
+        />
+        <FormErrorMessage>
+          {errors.pass && "password is required"}
         </FormErrorMessage>
       </FormControl>
       <Button
@@ -209,6 +262,11 @@ const RegisterForm = () => {
 
 const FirebaseAuth = () => {
   const [isLogin, setFormType] = React.useState(true)
+  const router = useRouter()
+  const { user } = useUser()
+  if (user) {
+    router.push("/")
+  }
 
   return (
     <Flex w="70%" h="100%" justify="center" align="center" direction="column">
