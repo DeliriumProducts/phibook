@@ -8,11 +8,11 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react"
-import firebase, { auth } from "firebase/app"
 import "firebase/auth"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import { BiLogIn } from "react-icons/bi"
+import firebase from "../firebase"
 import { mapUserData } from "../utils/auth/mapUserData"
 import { setUserCookie } from "../utils/auth/userCookies"
 import { useUser } from "../utils/auth/useUser"
@@ -46,7 +46,8 @@ const LoginForm = () => {
   const bg = useColorModeValue("gray.200", "gray.800")
   const onSubmit = (values) => {
     setLoading(true)
-    auth()
+    firebase
+      .auth()
       .signInWithEmailAndPassword(values["email"], values["pass"])
       .then(() => router.push("/"))
       .catch((err) => {
@@ -126,9 +127,17 @@ const RegisterForm = () => {
   const bg = useColorModeValue("gray.200", "gray.800")
   const onSubmit = (values) => {
     setLoading(true)
-    auth()
+    firebase
+      .auth()
       .createUserWithEmailAndPassword(values.email, values.pass)
-      .then(() => router.push("/"))
+      .then((data) => {
+        const { email, pass, ...valuesWithoutEmailAndPass } = values
+        firebase
+          .database()
+          .ref(`users/${data.user.uid}`)
+          .set(valuesWithoutEmailAndPass)
+        router.push("/")
+      })
       .catch((err) => {
         alert(err)
         reset()

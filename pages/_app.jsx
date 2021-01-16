@@ -1,10 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react"
+import "../firebase"
 import Layout from "../layouts/Layout"
 import theme from "../theme"
-import initFirebase from "../utils/auth/initFirebase"
-
-// Init the Firebase app.
-initFirebase()
 
 function App({ Component, pageProps }) {
   return (

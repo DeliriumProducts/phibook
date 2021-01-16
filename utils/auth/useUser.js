@@ -38,8 +38,13 @@ const useUser = () => {
       .onIdTokenChanged(async (user) => {
         if (user) {
           const userData = await mapUserData(user)
+          const snapshot = await firebase
+            .database()
+            .ref(`users/${userData.id}`)
+            .once("value")
+          const val = snapshot.val()
           setUserCookie(userData)
-          setUser(userData)
+          setUser({ ...userData, ...val })
           setLoading(false)
         } else {
           removeUserCookie()
