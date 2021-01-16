@@ -1,12 +1,13 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import {
-  Flex,
+  Button, Flex,
   Heading,
   IconButton,
   LinkBox,
   Tooltip,
   useColorMode,
-  useColorModeValue,
+
+  useColorModeValue
 } from "@chakra-ui/react"
 import { transparentize } from "@chakra-ui/theme-tools"
 import styled from "@emotion/styled"
@@ -63,7 +64,7 @@ const Layout = ({ children }) => {
               alignItems="center"
               flex={1}
             >
-              <Heading>Φ</Heading>
+              <Heading>phibook.</Heading>
             </LinkBox>
           </NextLink>
         </Flex>
@@ -72,36 +73,36 @@ const Layout = ({ children }) => {
             <Flex>
               <NextLink href="/" passHref>
                 <LinkBox>
-                  <Tooltip label="News" fontSize="md">
-                    <IconButton
-                      size="md"
-                      icon={<BsNewspaper />}
-                      mr={2}
+                  <Tooltip label="Home" fontSize="md">
+                    <Button
+                      // size="md"
+                      leftIcon={<BsNewspaper />}
+                      mr={25}
                       variant={router.pathname === "/" ? "solid" : "ghost"}
-                    />
+                    > Home </Button>
                   </Tooltip>
                 </LinkBox>
               </NextLink>
               <NextLink href="/positions" passHref>
                 <LinkBox>
                   <Tooltip label="Job Positions" fontSize="md">
-                    <IconButton
-                      icon={<BsFillPeopleFill />}
-                      mr={2}
+                    <Button
+                      leftIcon={<BsFillPeopleFill />}
+                      mr={25}
                       variant={
                         router.pathname === "/positions" ? "solid" : "ghost"
                       }
-                    />
+                    > Jobs </Button> 
                   </Tooltip>
                 </LinkBox>
               </NextLink>
               <NextLink href="/chat" passHref>
                 <LinkBox>
                   <Tooltip label="Chat" fontSize="md">
-                    <IconButton
-                      icon={<BsFillChatFill />}
+                    <Button
+                      leftIcon={<BsFillChatFill/>}
                       variant={router.pathname === "/chat" ? "solid" : "ghost"}
-                    />
+                    > Chat </Button> 
                   </Tooltip>
                 </LinkBox>
               </NextLink>
