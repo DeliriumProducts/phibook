@@ -9,6 +9,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react"
 import axios from "axios"
+import NextLink from "next/link"
 import { useRouter } from "next/router"
 import { BiUserCircle } from "react-icons/bi"
 import firebase from "../firebase"
@@ -76,9 +77,11 @@ const Index = () => {
         p=".3rem"
         display={{ base: "none", md: "flex" }}
       >
-        <Button size="lg" variant="ghost" leftIcon={<BiUserCircle />}>
-          {user.firstName} {user.lastName}
-        </Button>
+        <NextLink href="/my-profile">
+          <Button size="lg" variant="ghost" leftIcon={<BiUserCircle />}>
+            {user.firstName} {user.lastName}
+          </Button>
+        </NextLink>
       </Flex>
       <Flex flex={3} minHeight="100%" flexDirection="column">
         <Heading size="4xl" p="1rem" position="sticky">
