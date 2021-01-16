@@ -7,6 +7,7 @@ import {
   Input,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react"
 import "firebase/auth"
 import { useRouter } from "next/router"
@@ -123,6 +124,7 @@ const RegisterForm = () => {
   const { register, handleSubmit, errors, reset } = useForm({
     reValidateMode: "onBlur",
   })
+  const toast = useToast()
   const [loading, setLoading] = React.useState(false)
   const bg = useColorModeValue("gray.200", "gray.800")
   const onSubmit = (values) => {
@@ -139,7 +141,10 @@ const RegisterForm = () => {
         router.push("/")
       })
       .catch((err) => {
-        alert(err)
+        toast({
+          title: err.toString(),
+          status: "error",
+        })
         reset()
       })
       .finally(() => setLoading(false))
@@ -191,23 +196,6 @@ const RegisterForm = () => {
           {errors.firstName && "first name is required"}
         </FormErrorMessage>
       </FormControl>
-      <FormControl isInvalid={errors.middleName}>
-        <Input
-          ref={register({ required: true })}
-          placeholder="middle name"
-          name="middleName"
-          size="lg"
-          w="100%"
-          my={2}
-          padding="10px"
-          variant="filled"
-          bg={bg}
-          rounded="lg"
-        />
-        <FormErrorMessage>
-          {errors.middleName && "middle name is required"}
-        </FormErrorMessage>
-      </FormControl>
       <FormControl isInvalid={errors.lastName}>
         <Input
           ref={register({ required: true })}
@@ -223,41 +211,6 @@ const RegisterForm = () => {
         />
         <FormErrorMessage>
           {errors.lastName && "last name is required"}
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={errors.workPosition}>
-        <Input
-          ref={register({ required: true })}
-          placeholder="work position"
-          name="workPosition"
-          size="lg"
-          w="100%"
-          my={2}
-          padding="10px"
-          variant="filled"
-          bg={bg}
-          rounded="lg"
-        />
-        <FormErrorMessage>
-          {errors.workPosition && "work position is required"}
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={errors.phone}>
-        <Input
-          ref={register({ required: true })}
-          placeholder="phone number"
-          type="numeric"
-          name="phone"
-          size="lg"
-          w="100%"
-          my={2}
-          padding="10px"
-          variant="filled"
-          bg={bg}
-          rounded="lg"
-        />
-        <FormErrorMessage>
-          {errors.phone && "phone number is required"}
         </FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={errors.pass}>

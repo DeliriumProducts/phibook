@@ -76,17 +76,7 @@ const Index = () => {
         p=".3rem"
         display={{ base: "none", md: "flex" }}
       >
-        <Button
-          size="lg"
-          variant="ghost"
-          leftIcon={<BiUserCircle />}
-          onClick={() => {
-            firebase.database().ref("news").push({
-              title: "We're moving to AWS",
-              content: "After a long debate, we're moving to AWS.",
-            })
-          }}
-        >
+        <Button size="lg" variant="ghost" leftIcon={<BiUserCircle />}>
           {user.firstName} {user.lastName}
         </Button>
       </Flex>
@@ -97,7 +87,7 @@ const Index = () => {
         {<Divider />}
         {news.map((v) => (
           <>
-            <Box key={v} m="1rem">
+            <Box key={v} m="1rem" p="1rem">
               <Heading size="lg">{v.title}</Heading>
               <Text>{v.content}</Text>
             </Box>
