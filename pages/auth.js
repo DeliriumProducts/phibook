@@ -7,12 +7,12 @@ import {
   Input,
   Text,
   useColorModeValue,
-  useToast,
+  useToast
 } from "@chakra-ui/react"
 import "firebase/auth"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
-import { BiLogIn } from "react-icons/bi"
+import { AiOutlineRight } from "react-icons/ai"
 import firebase from "../firebase"
 import { mapUserData } from "../utils/auth/mapUserData"
 import { setUserCookie } from "../utils/auth/userCookies"
@@ -45,7 +45,7 @@ const LoginForm = () => {
   const { register, handleSubmit, errors, reset } = useForm({
     reValidateMode: "onBlur",
   })
-  const bg = useColorModeValue("gray.200", "gray.800")
+  const bg = useColorModeValue("transparent", "transparent")
   const onSubmit = (values) => {
     setLoading(true)
     firebase
@@ -65,7 +65,7 @@ const LoginForm = () => {
   return (
     <Flex
       as="form"
-      w="100%"
+      w={["100%","30rem"]}
       justify="center"
       align="center"
       flexDir="column"
@@ -82,7 +82,7 @@ const LoginForm = () => {
           padding="10px"
           variant="filled"
           bg={bg}
-          rounded="lg"
+          rounded={13}
         />
         <FormErrorMessage>
           {errors.email && "email is required"}
@@ -100,14 +100,14 @@ const LoginForm = () => {
           padding="10px"
           variant="filled"
           bg={bg}
-          rounded="lg"
+          rounded={13}
         />
         <FormErrorMessage>
           {errors.pass && "password is required"}
         </FormErrorMessage>
       </FormControl>
       <Button
-        leftIcon={<BiLogIn />}
+        rightIcon={<AiOutlineRight />}
         type="submit"
         my={2}
         isLoading={loading}
@@ -117,7 +117,7 @@ const LoginForm = () => {
         rounded="lg"
         padding="10px"
       >
-        login
+        Login
       </Button>
     </Flex>
   )
@@ -130,7 +130,7 @@ const RegisterForm = () => {
   })
   const toast = useToast()
   const [loading, setLoading] = React.useState(false)
-  const bg = useColorModeValue("gray.200", "gray.800")
+  const bg = useColorModeValue("transparent", "transparent")
   const onSubmit = (values) => {
     setLoading(true)
     firebase
@@ -157,7 +157,7 @@ const RegisterForm = () => {
   return (
     <Flex
       as="form"
-      w="100%"
+      w={["100%","30rem"]}
       justify="center"
       align="center"
       flexDir="column"
@@ -236,7 +236,7 @@ const RegisterForm = () => {
         </FormErrorMessage>
       </FormControl>
       <Button
-        leftIcon={<BiLogIn />}
+        rightIcon={<AiOutlineRight/>}
         type="submit"
         bg={bg}
         my={2}
@@ -246,7 +246,7 @@ const RegisterForm = () => {
         rounded="lg"
         padding="10px"
       >
-        register
+        Register
       </Button>
     </Flex>
   )
@@ -262,7 +262,7 @@ const FirebaseAuth = () => {
 
   return (
     <Flex
-      w="100%"
+      // w="100%"
       minHeight="100%"
       flexGrow={1}
       justify="center"
