@@ -12,7 +12,9 @@ import {
 import { transparentize } from "@chakra-ui/theme-tools"
 import styled from "@emotion/styled"
 import NextLink from "next/link"
+import { useRouter } from "next/router"
 import { BiLogOut } from "react-icons/bi"
+import { BsFillChatFill, BsFillPeopleFill, BsNewspaper } from "react-icons/bs"
 import { useUser } from "../utils/auth/useUser"
 
 // https://github.com/leerob/leerob.io/blob/b061aac7bdedd51dd511adb751483ef47c18b0e6/components/Container.js#L8
@@ -33,6 +35,7 @@ const Layout = ({ children }) => {
   const { toggleColorMode } = useColorMode()
   const icon = useColorModeValue(<MoonIcon />, <SunIcon />)
   const { logout } = useUser()
+  const router = useRouter()
 
   return (
     <Flex
@@ -62,6 +65,33 @@ const Layout = ({ children }) => {
             >
               <Heading ml="1rem">Φ</Heading>
             </LinkBox>
+          </NextLink>
+        </Flex>
+        <Flex>
+          <NextLink href="/">
+            <IconButton
+              size="md"
+              icon={<BsNewspaper />}
+              mr={2}
+              as="a"
+              variant={router.pathname === "/news" ? "solid" : "ghost"}
+            />
+          </NextLink>
+          <NextLink href="/positions">
+            <IconButton
+              icon={<BsFillPeopleFill />}
+              mr={2}
+              as="a"
+              variant={router.pathname === "/positions" ? "solid" : "ghost"}
+            />
+          </NextLink>
+          <NextLink href="/chat">
+            <IconButton
+              icon={<BsFillChatFill />}
+              mr={2}
+              as="a"
+              variant={router.pathname === "/chat" ? "solid" : "ghost"}
+            />
           </NextLink>
         </Flex>
         <Flex px="1rem">
