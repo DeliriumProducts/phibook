@@ -1,4 +1,4 @@
-import { Box, Heading, Spinner } from "@chakra-ui/react"
+import { Flex, Spinner } from "@chakra-ui/react"
 import axios from "axios"
 import { useRouter } from "next/router"
 import useSWR from "swr"
@@ -29,9 +29,14 @@ const Index = () => {
   }
 
   return (
-    <Box w="100%" minH="100vh">
-      <Heading>Welcome, {user.firstName}</Heading>
-    </Box>
+    <Flex w="100%" minHeight="100%" flexGrow={1}>
+      <Flex flex={1} bg="red.50" minHeight="100%">
+        h
+      </Flex>
+      <Flex flex={2} bg="green.50" minHeight="100%">
+        h
+      </Flex>
+    </Flex>
   )
 }
 

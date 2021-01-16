@@ -242,6 +242,23 @@ const RegisterForm = () => {
           {errors.workPosition && "work position is required"}
         </FormErrorMessage>
       </FormControl>
+      <FormControl isInvalid={errors.phone}>
+        <Input
+          ref={register({ required: true })}
+          placeholder="phone number"
+          name="phone"
+          size="lg"
+          w="100%"
+          my={2}
+          padding="10px"
+          variant="filled"
+          bg={bg}
+          rounded="lg"
+        />
+        <FormErrorMessage>
+          {errors.phone && "phone number is required"}
+        </FormErrorMessage>
+      </FormControl>
       <FormControl isInvalid={errors.pass}>
         <Input
           ref={register({ required: true })}
