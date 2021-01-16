@@ -6,6 +6,7 @@ import {
   Heading,
   IconButton,
   LinkBox,
+  Tooltip,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react"
@@ -69,29 +70,35 @@ const Layout = ({ children }) => {
         </Flex>
         <Flex>
           <NextLink href="/">
-            <IconButton
-              size="md"
-              icon={<BsNewspaper />}
-              mr={2}
-              as="a"
-              variant={router.pathname === "/news" ? "solid" : "ghost"}
-            />
+            <Tooltip label="News" fontSize="md">
+              <IconButton
+                size="md"
+                icon={<BsNewspaper />}
+                mr={2}
+                as="a"
+                variant={router.pathname === "/news" ? "solid" : "ghost"}
+              />
+            </Tooltip>
           </NextLink>
           <NextLink href="/positions">
-            <IconButton
-              icon={<BsFillPeopleFill />}
-              mr={2}
-              as="a"
-              variant={router.pathname === "/positions" ? "solid" : "ghost"}
-            />
+            <Tooltip label="Job Positions" fontSize="md">
+              <IconButton
+                icon={<BsFillPeopleFill />}
+                mr={2}
+                as="a"
+                variant={router.pathname === "/positions" ? "solid" : "ghost"}
+              />
+            </Tooltip>
           </NextLink>
           <NextLink href="/chat">
-            <IconButton
-              icon={<BsFillChatFill />}
-              mr={2}
-              as="a"
-              variant={router.pathname === "/chat" ? "solid" : "ghost"}
-            />
+            <Tooltip label="Chat" fontSize="md">
+              <IconButton
+                icon={<BsFillChatFill />}
+                mr={2}
+                as="a"
+                variant={router.pathname === "/chat" ? "solid" : "ghost"}
+              />
+            </Tooltip>
           </NextLink>
         </Flex>
         <Flex px="1rem">
