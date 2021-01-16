@@ -95,7 +95,7 @@ const Layout = ({ children }) => {
                   </Tooltip>
                 </LinkBox>
               </NextLink>
-              <NextLink href="/chat">
+              <NextLink href="/chat" passHref>
                 <LinkBox>
                   <Tooltip label="Chat" fontSize="md">
                     <IconButton
