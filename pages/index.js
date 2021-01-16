@@ -4,6 +4,7 @@ import {
   Flex,
   Heading,
   Spinner,
+  Text,
   useColorModeValue,
 } from "@chakra-ui/react"
 import axios from "axios"
@@ -43,7 +44,7 @@ const Index = () => {
         snapshot.forEach((v) => {
           n.push(v.val())
         })
-        setNews(news)
+        setNews(n)
       })
   }, [])
 
@@ -93,7 +94,7 @@ const Index = () => {
           News
         </Heading>
         {news.map((v) => (
-          <Box w="5rem" key={v} m="1rem">
+          <Box key={v} m="1rem">
             <Heading>{v.title}</Heading>
             <Text>{v.content}</Text>
           </Box>
