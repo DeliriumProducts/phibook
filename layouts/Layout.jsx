@@ -1,6 +1,7 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import {
   Box,
+  Button,
   Flex,
   Heading,
   IconButton,
@@ -11,6 +12,8 @@ import {
 import { transparentize } from "@chakra-ui/theme-tools"
 import styled from "@emotion/styled"
 import NextLink from "next/link"
+import { BiLogOut } from "react-icons/bi"
+import { useUser } from "../utils/auth/useUser"
 
 // https://github.com/leerob/leerob.io/blob/b061aac7bdedd51dd511adb751483ef47c18b0e6/components/Container.js#L8
 const StickyNav = styled(Flex)`
@@ -29,6 +32,7 @@ const Layout = ({ children }) => {
   )
   const { toggleColorMode } = useColorMode()
   const icon = useColorModeValue(<MoonIcon />, <SunIcon />)
+  const { logout } = useUser()
 
   return (
     <Flex
@@ -59,7 +63,15 @@ const Layout = ({ children }) => {
             <Heading ml="1rem">Φ</Heading>
           </LinkBox>
         </NextLink>
-        <Box flex={2} />
+        <Flex flex={2} justifyContent="space-between">
+          <Button
+            onClick={logout}
+            leftIcon={<Box as={BiLogOut} boxSize="1rem" />}
+            mr={2}
+          >
+            Log out
+          </Button>
+        </Flex>
       </StickyNav>
       {children}
       <IconButton
