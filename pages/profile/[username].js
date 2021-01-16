@@ -1,6 +1,6 @@
-import Head from 'next/head'
+import Head from "next/head"
 
-import { getProfileData } from '../../fetchData/getProfileData'
+import { getProfileData } from "../../fetchData/getProfileData"
 
 export default function SSRPage({ data }) {
   const { username, profile } = data

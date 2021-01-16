@@ -1,14 +1,14 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import { useEffect } from 'react'
-import { useUser } from '../context/userContext'
-import firebase from '../firebase/clientApp'
+import Head from "next/head"
+import Link from "next/link"
+import { useEffect } from "react"
+import { useUser } from "../context/userContext"
+import firebase from "../firebase/clientApp"
 
 export default function Home() {
   // Our custom hook to get context values
   const { loadingUser, user } = useUser()
 
-  const profile = { username: 'nextjs_user', message: 'Awesome!!' }
+  const profile = { username: "nextjs_user", message: "Awesome!!" }
 
   useEffect(() => {
     if (!loadingUser) {
@@ -21,8 +21,8 @@ export default function Home() {
 
   const createUser = async () => {
     const db = firebase.firestore()
-    await db.collection('profile').doc(profile.username).set(profile)
-    alert('User created!!')
+    await db.collection("profile").doc(profile.username).set(profile)
+    alert("User created!!")
   }
 
   return (
