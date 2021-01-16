@@ -7,7 +7,6 @@ const theme = extendTheme({
         minWidth: "100vw",
         maxWidth: "100vw",
         width: "100vw",
-        overflowX: "hidden",
         minHeight: "100vh",
       },
     }),

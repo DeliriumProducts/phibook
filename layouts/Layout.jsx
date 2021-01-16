@@ -1,6 +1,5 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import {
-  Box,
   Flex,
   Heading,
   IconButton,
@@ -34,7 +33,7 @@ const Layout = ({ children }) => {
   )
   const { toggleColorMode } = useColorMode()
   const icon = useColorModeValue(<MoonIcon />, <SunIcon />)
-  const { logout } = useUser()
+  const { logout, user } = useUser()
   const router = useRouter()
 
   return (
@@ -51,7 +50,7 @@ const Layout = ({ children }) => {
         justifyContent="space-between"
         alignItems="center"
         width="100%"
-        px="1rem"
+        px="2rem"
         as="nav"
         mx="auto"
       >
@@ -68,43 +67,52 @@ const Layout = ({ children }) => {
             </LinkBox>
           </NextLink>
         </Flex>
-        <Flex>
-          <Tooltip label="News" fontSize="md">
-            <NextLink href="/">
-              <IconButton
-                size="md"
-                icon={<BsNewspaper />}
-                mr={2}
-                as="a"
-                variant={router.pathname === "/" ? "solid" : "ghost"}
-              />
-            </NextLink>
-          </Tooltip>
-          <Tooltip label="Job Positions" fontSize="md">
-            <NextLink href="/positions">
-              <IconButton
-                icon={<BsFillPeopleFill />}
-                mr={2}
-                as="a"
-                variant={router.pathname === "/positions" ? "solid" : "ghost"}
-              />
-            </NextLink>
-          </Tooltip>
-          <Tooltip label="Chat" fontSize="md">
-            <NextLink href="/chat">
-              <IconButton
-                icon={<BsFillChatFill />}
-                as="a"
-                variant={router.pathname === "/chat" ? "solid" : "ghost"}
-              />
-            </NextLink>
-          </Tooltip>
-        </Flex>
-        <IconButton
-          variant="ghost"
-          onClick={logout}
-          icon={<Box as={BiLogOut} boxSize="1rem" />}
-        ></IconButton>
+        {user && (
+          <>
+            <Flex>
+              <NextLink href="/" passHref>
+                <LinkBox>
+                  <Tooltip label="News" fontSize="md">
+                    <IconButton
+                      size="md"
+                      icon={<BsNewspaper />}
+                      mr={2}
+                      variant={router.pathname === "/" ? "solid" : "ghost"}
+                    />
+                  </Tooltip>
+                </LinkBox>
+              </NextLink>
+              <NextLink href="/positions" passHref>
+                <LinkBox>
+                  <Tooltip label="Job Positions" fontSize="md">
+                    <IconButton
+                      icon={<BsFillPeopleFill />}
+                      mr={2}
+                      variant={
+                        router.pathname === "/positions" ? "solid" : "ghost"
+                      }
+                    />
+                  </Tooltip>
+                </LinkBox>
+              </NextLink>
+              <NextLink href="/chat">
+                <LinkBox>
+                  <Tooltip label="Chat" fontSize="md">
+                    <IconButton
+                      icon={<BsFillChatFill />}
+                      variant={router.pathname === "/chat" ? "solid" : "ghost"}
+                    />
+                  </Tooltip>
+                </LinkBox>
+              </NextLink>
+            </Flex>
+            <IconButton
+              variant="ghost"
+              onClick={logout}
+              icon={<BiLogOut />}
+            ></IconButton>
+          </>
+        )}
       </StickyNav>
       {children}
       <IconButton
