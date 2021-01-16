@@ -1,7 +1,6 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import {
   Box,
-  Button,
   Flex,
   Heading,
   IconButton,
@@ -52,6 +51,7 @@ const Layout = ({ children }) => {
         justifyContent="space-between"
         alignItems="center"
         width="100%"
+        px="1rem"
         as="nav"
         mx="auto"
       >
@@ -64,7 +64,7 @@ const Layout = ({ children }) => {
               alignItems="center"
               flex={1}
             >
-              <Heading ml="1rem">Φ</Heading>
+              <Heading>Φ</Heading>
             </LinkBox>
           </NextLink>
         </Flex>
@@ -94,22 +94,17 @@ const Layout = ({ children }) => {
             <NextLink href="/chat">
               <IconButton
                 icon={<BsFillChatFill />}
-                mr={2}
                 as="a"
                 variant={router.pathname === "/chat" ? "solid" : "ghost"}
               />
             </NextLink>
           </Tooltip>
         </Flex>
-        <Flex px="1rem">
-          <Button
-            onClick={logout}
-            leftIcon={<Box as={BiLogOut} boxSize="1rem" />}
-            mr={2}
-          >
-            Log out
-          </Button>
-        </Flex>
+        <IconButton
+          variant="ghost"
+          onClick={logout}
+          icon={<Box as={BiLogOut} boxSize="1rem" />}
+        ></IconButton>
       </StickyNav>
       {children}
       <IconButton
