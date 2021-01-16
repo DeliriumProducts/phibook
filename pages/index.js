@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Divider,
   Flex,
   Heading,
   Spinner,
@@ -90,14 +91,18 @@ const Index = () => {
         </Button>
       </Flex>
       <Flex flex={3} minHeight="100%" flexDirection="column">
-        <Heading size="3xl" p="1rem" position="sticky">
+        <Heading size="4xl" p="1rem" position="sticky">
           News
         </Heading>
+        {<Divider />}
         {news.map((v) => (
-          <Box key={v} m="1rem">
-            <Heading>{v.title}</Heading>
-            <Text>{v.content}</Text>
-          </Box>
+          <>
+            <Box key={v} m="1rem">
+              <Heading size="lg">{v.title}</Heading>
+              <Text>{v.content}</Text>
+            </Box>
+            {<Divider />}
+          </>
         ))}
       </Flex>
     </Flex>
