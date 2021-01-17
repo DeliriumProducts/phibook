@@ -8,9 +8,6 @@ const theme = extendTheme({
   styles: {
     global: (props) => ({
       "body, html, #__next": {
-        minWidth: "100vw",
-        maxWidth: "100vw",
-        width: "100vw",
         minHeight: "100vh",
       },
     }),

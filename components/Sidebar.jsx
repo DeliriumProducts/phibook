@@ -6,8 +6,8 @@ const Sidebar = ({ user }) => {
 
   return (
     <Flex
-      minHeight="100%"
       bg={sideBarBg}
+      position="sticky"
       p="1rem"
       display={{ base: "none", md: "flex" }}
     >

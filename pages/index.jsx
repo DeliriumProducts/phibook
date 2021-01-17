@@ -60,7 +60,7 @@ const Index = () => {
     <Flex w="100%" minHeight="100%" flexGrow={1}>
       <Sidebar user={user} />
       <Flex flex={3} minHeight="100%" flexDirection="column">
-        <Heading size="4xl" p="1rem" position="sticky">
+        <Heading size="4xl" p="1rem">
           News
         </Heading>
         {<Divider />}
