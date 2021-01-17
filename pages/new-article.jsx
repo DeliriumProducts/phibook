@@ -9,6 +9,8 @@ import {
   Button,
   useToast,
   Spinner,
+  Avatar,
+  Divider,
   Text,
   Textarea,
 } from "@chakra-ui/react"
@@ -23,8 +25,8 @@ import { useRouter } from "next/router"
 export default function Admin() {
   const { user, loading } = useUser()
   const router = useRouter()
-  const [title, setTitle] = React.useState()
-  const [body, setBody] = React.useState()
+  const [title, setTitle] = React.useState("")
+  const [body, setBody] = React.useState("")
 
   const [formLoading, setFormLoading] = React.useState(false)
   const { register, handleSubmit, errors, reset } = useForm({
@@ -144,10 +146,20 @@ export default function Admin() {
         <Heading size="lg" p="1rem">
           Preview
         </Heading>
-        <Box m="1rem" p="1rem">
-          <Heading size="lg">{title}</Heading>
-          <Text>{body}</Text>
-        </Box>
+        <React.Fragment>
+          <Flex alignItems="center" justifyContent="space-around" p="1rem">
+            <Box m="0.5rem" p="1rem" flex={2}>
+              <Heading size="lg">{title}</Heading>
+              <Text>{body}</Text>
+            </Box>
+            {title === "" && body === "" ? (
+              <></>
+            ) : (
+              <Avatar size="sm" src={user.avatar} />
+            )}
+          </Flex>
+          <Divider />
+        </React.Fragment>
       </Flex>
     </Flex>
   )

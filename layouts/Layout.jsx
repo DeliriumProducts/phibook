@@ -28,6 +28,7 @@ import {
   BsPencilSquare,
   BsFillPeopleFill,
   BsNewspaper,
+  BsPersonCheck,
 } from "react-icons/bs"
 import { useUser } from "../utils/auth/useUser"
 
@@ -153,10 +154,16 @@ const Layout = ({ children }) => {
                 <MenuDivider />
                 <MenuGroup>
                   {!!user.admin && (
-                    <MenuItem onClick={() => router.push("/new-article")}>
-                      <Box as={BsPencilSquare} mr="12px" />
-                      <span>New article</span>
-                    </MenuItem>
+                    <>
+                      <MenuItem onClick={() => router.push("/new-article")}>
+                        <Box as={BsPencilSquare} mr="12px" />
+                        <span>New article</span>
+                      </MenuItem>
+                      <MenuItem onClick={() => router.push("/new-job")}>
+                        <Box as={BsPersonCheck} mr="12px" />
+                        <span>New job position</span>
+                      </MenuItem>
+                    </>
                   )}
                   <MenuItem>About</MenuItem>
                   <MenuItem>FAQ</MenuItem>
