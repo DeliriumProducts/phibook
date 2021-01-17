@@ -18,9 +18,11 @@ import { useForm } from "react-hook-form"
 import { Sidebar } from "../components/Sidebar"
 import { useUser } from "../utils/auth/useUser"
 import firebase from "../firebase"
+import { useRouter } from "next/router"
 
 export default function Admin() {
   const { user, loading } = useUser()
+  const router = useRouter()
   const [title, setTitle] = React.useState()
   const [body, setBody] = React.useState()
 
@@ -44,8 +46,8 @@ export default function Admin() {
     )
   }
 
-  if (!user && !loading) {
-    router.push("/auth")
+  if (!user.admin && !loading) {
+    router.push("/")
   }
 
   const onSubmit = ({ arcTitle, arcBody }) => {

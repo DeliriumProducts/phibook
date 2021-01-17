@@ -23,7 +23,12 @@ import NextLink from "next/link"
 import { useRouter } from "next/router"
 import { AiFillCaretDown } from "react-icons/ai"
 import { BiLogOut } from "react-icons/bi"
-import { BsFillChatFill, BsFillPeopleFill, BsNewspaper } from "react-icons/bs"
+import {
+  BsFillChatFill,
+  BsPencilSquare,
+  BsFillPeopleFill,
+  BsNewspaper,
+} from "react-icons/bs"
 import { useUser } from "../utils/auth/useUser"
 
 // https://github.com/leerob/leerob.io/blob/b061aac7bdedd51dd511adb751483ef47c18b0e6/components/Container.js#L8
@@ -121,7 +126,11 @@ const Layout = ({ children }) => {
               </NextLink>
             </Flex>
             <Menu>
-              <MenuButton bg={"transparent"} as={Button}>
+              <MenuButton
+                mt={["0.5rem", "0rem"]}
+                bg={"transparent"}
+                as={Button}
+              >
                 <IconButton variant="ghost" icon={<AiFillCaretDown />} />
               </MenuButton>
               <MenuList>
@@ -143,6 +152,12 @@ const Layout = ({ children }) => {
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup>
+                  {!!user.admin && (
+                    <MenuItem onClick={() => router.push("/new-article")}>
+                      <Box as={BsPencilSquare} mr="12px" />
+                      <span>New article</span>
+                    </MenuItem>
+                  )}
                   <MenuItem>About</MenuItem>
                   <MenuItem>FAQ</MenuItem>
                 </MenuGroup>
