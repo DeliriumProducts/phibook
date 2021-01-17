@@ -139,7 +139,7 @@ const Layout = ({ children }) => {
           </>
         )}
       </StickyNav>
-
+      {children}
       <IconButton
         aria-label="Toggle dark mode"
         position="fixed"
