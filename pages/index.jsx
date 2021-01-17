@@ -68,7 +68,7 @@ const Index = () => {
         <Heading size="4xl" p="1rem">
           News
         </Heading>
-        {<Divider />}
+        <Divider />
         {news.map((v) => (
           <>
             <Box key={v} m="1rem" p="1rem">
