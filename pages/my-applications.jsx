@@ -1,26 +1,17 @@
 import {
-  Flex,
-  Input,
   Box,
-  FormLabel,
-  FormControl,
-  FormErrorMessage,
   Divider,
+  Flex,
   Heading,
-  Button,
-  Tag,
-  useToast,
   Spinner,
-  Checkbox,
-  HStack,
+  Tag,
   Text,
-  Textarea,
 } from "@chakra-ui/react"
 import "firebase/auth"
+import { useRouter } from "next/router"
 import React from "react"
 import { Sidebar } from "../components/Sidebar"
 import { useUser } from "../utils/auth/useUser"
-import { useRouter } from "next/router"
 
 export default function Admin() {
   const { user, loading } = useUser()
@@ -51,6 +42,7 @@ export default function Admin() {
         ml={{ sm: 0, md: 64 }}
         flex={3}
         minHeight="100%"
+        p="2rem"
         w="100%"
         flexDirection="column"
       >

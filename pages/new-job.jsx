@@ -99,6 +99,7 @@ export default function Admin() {
       <Flex
         ml={{ sm: 0, md: 64 }}
         flex={3}
+        p="2rem"
         minHeight="100%"
         w="100%"
         flexDirection="column"

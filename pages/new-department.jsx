@@ -1,8 +1,6 @@
 import {
-  Avatar,
   Box,
   Button,
-  Divider,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -10,8 +8,6 @@ import {
   Heading,
   Input,
   Spinner,
-  Text,
-  Textarea,
   useToast,
 } from "@chakra-ui/react"
 import "firebase/auth"
@@ -89,11 +85,12 @@ export default function Admin() {
         ml={{ sm: 0, md: 64 }}
         flex={3}
         minHeight="100%"
+        p="2rem"
         w="100%"
         flexDirection="column"
       >
         <Heading size="4xl" p="1rem">
-          Article
+          Department
         </Heading>
         <Flex height="100%" align="center" justify="center">
           <Box as="form" w="50%" onSubmit={handleSubmit(onSubmit)}>
