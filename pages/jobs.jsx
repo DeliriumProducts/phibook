@@ -67,9 +67,8 @@ const Positions = () => {
         </Heading>
         <Divider />
         {jobs.map((v) => (
-          <>
+          <React.Fragment key={v.title}>
             <Flex
-              key={v.title}
               alignItems="center"
               justifyContent="space-between"
               p="1rem"
@@ -103,7 +102,7 @@ const Positions = () => {
               </Button>
             </Flex>
             <Divider />
-          </>
+          </React.Fragment>
         ))}
       </Flex>
     </Flex>
