@@ -4,11 +4,14 @@ import {
   Flex,
   FormLabel,
   Heading,
+  IconButton,
   Input,
   Spinner,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react"
+import { AiFillHeart } from "react-icons/ai"
 import firebase from "../firebase"
 import { useUser } from "../utils/auth/useUser"
 
@@ -17,6 +20,7 @@ const Colleagues = () => {
   const [users, setUsers] = React.useState([])
   const bg = useColorModeValue("white", "gray.800")
   const [filter, setFilter] = React.useState("")
+  const toast = useToast()
 
   React.useEffect(() => {
     return firebase
@@ -135,6 +139,15 @@ const Colleagues = () => {
                     {email}
                   </Text>
                 </Flex>
+                <IconButton
+                  icon={<AiFillHeart />}
+                  onClick={() => {
+                    toast({
+                      title: `You sent a thank you to ${firstName}!`,
+                      status: "success",
+                    })
+                  }}
+                />
               </Flex>
             )
           })}
