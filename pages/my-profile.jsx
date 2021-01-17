@@ -5,6 +5,7 @@ import {
   Flex,
   Heading,
   Input,
+  Spinner,
   Text,
   useColorModeValue,
   useToast,
@@ -76,100 +77,104 @@ const Page = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Flex
-        bg={bg}
-        minH="20rem"
-        minW="20rem"
-        flexDir="column"
-        p="4rem"
-        borderRadius="lg"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Box>
-          <Avatar
-            size="2xl"
-            marginTop="-8rem"
-            src={url || user?.avatar}
-            _hover={{
-              opacity: 0.4,
-              transition: "opacity ease-in-out 0.2s",
-            }}
-            onClick={() => {
-              imageRef.current.click()
-            }}
-          />
-        </Box>
-        <Input
-          type="file"
-          ref={imageRef}
-          style={{ display: "none" }}
-          onChange={upload}
-        />
-        <Flex justifyContent="center" flexDirection="column">
-          <Heading textAlign="center">
-            {user?.firstName} {user?.lastName}
-          </Heading>
-          <Heading mt="1rem" size="md">
-            Job
-          </Heading>
-          <Text fontStyle="italic" mt=".5rem">
-            {user?.workPosition}
-          </Text>
-          <Heading mt="1rem" size="md">
-            Bio
-          </Heading>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Flex
+          bg={bg}
+          minH="20rem"
+          minW="20rem"
+          flexDir="column"
+          p="4rem"
+          borderRadius="lg"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box>
+            <Avatar
+              size="2xl"
+              marginTop="-8rem"
+              src={url || user?.avatar}
+              _hover={{
+                opacity: 0.4,
+                transition: "opacity ease-in-out 0.2s",
+              }}
+              onClick={() => {
+                imageRef.current.click()
+              }}
+            />
+          </Box>
           <Input
-            variant="flushed"
-            value={bio}
-            fontStyle="italic"
-            mt=".5rem"
-            onChange={(e) => setBio(e.currentTarget.value)}
+            type="file"
+            ref={imageRef}
+            style={{ display: "none" }}
+            onChange={upload}
           />
-          <Heading mt="1rem" size="md">
-            Phone
-          </Heading>
-          <Input
-            value={phone}
-            fontStyle="italic"
-            mt=".5rem"
-            variant="flushed"
-            onChange={(e) => setPhone(e.currentTarget.value)}
-          />
-          <Flex mt="1rem" justifyContent="space-evenly">
-            <Box
-              as={FaTwitter}
-              opacity={user?.twitter ? "1" : "0.5"}
-              _hover={{
-                opacity: 1,
-              }}
-              transition="opacity ease-in-out 0.2s"
-              boxSize="3rem"
+          <Flex justifyContent="center" flexDirection="column">
+            <Heading textAlign="center">
+              {user?.firstName} {user?.lastName}
+            </Heading>
+            <Heading mt="1rem" size="md">
+              Job
+            </Heading>
+            <Text fontStyle="italic" mt=".5rem">
+              {user?.workPosition}
+            </Text>
+            <Heading mt="1rem" size="md">
+              Bio
+            </Heading>
+            <Input
+              variant="flushed"
+              value={bio}
+              fontStyle="italic"
+              mt=".5rem"
+              onChange={(e) => setBio(e.currentTarget.value)}
             />
-            <Box
-              as={FaGithub}
-              opacity={user?.github ? "1" : "0.5"}
-              _hover={{
-                opacity: 1,
-              }}
-              transition="opacity ease-in-out 0.2s"
-              boxSize="3rem"
+            <Heading mt="1rem" size="md">
+              Phone
+            </Heading>
+            <Input
+              value={phone}
+              fontStyle="italic"
+              mt=".5rem"
+              variant="flushed"
+              onChange={(e) => setPhone(e.currentTarget.value)}
             />
-            <Box
-              as={FaFacebook}
-              transition="opacity ease-in-out 0.2s"
-              opacity={user?.facebook ? "1" : "0.5"}
-              _hover={{
-                opacity: 1,
-              }}
-              boxSize="3rem"
-            />
+            <Flex mt="1rem" justifyContent="space-evenly">
+              <Box
+                as={FaTwitter}
+                opacity={user?.twitter ? "1" : "0.5"}
+                _hover={{
+                  opacity: 1,
+                }}
+                transition="opacity ease-in-out 0.2s"
+                boxSize="3rem"
+              />
+              <Box
+                as={FaGithub}
+                opacity={user?.github ? "1" : "0.5"}
+                _hover={{
+                  opacity: 1,
+                }}
+                transition="opacity ease-in-out 0.2s"
+                boxSize="3rem"
+              />
+              <Box
+                as={FaFacebook}
+                transition="opacity ease-in-out 0.2s"
+                opacity={user?.facebook ? "1" : "0.5"}
+                _hover={{
+                  opacity: 1,
+                }}
+                boxSize="3rem"
+              />
+            </Flex>
+            <Button mt="2rem" onClick={onClick} isLoading={isLoading}>
+              Save
+            </Button>
           </Flex>
-          <Button mt="2rem" onClick={onClick} isLoading={isLoading}>
-            Save
-          </Button>
         </Flex>
-      </Flex>
+      )}
     </Flex>
   )
 }
