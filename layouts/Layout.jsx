@@ -30,6 +30,7 @@ import {
   BsNewspaper,
   BsPersonCheck,
 } from "react-icons/bs"
+import { FaRegListAlt } from "react-icons/fa"
 import { useUser } from "../utils/auth/useUser"
 
 // https://github.com/leerob/leerob.io/blob/b061aac7bdedd51dd511adb751483ef47c18b0e6/components/Container.js#L8
@@ -149,7 +150,10 @@ const Layout = ({ children }) => {
                     />
                     <span>My Profile</span>
                   </MenuItem>
-                  <MenuItem>My Applications</MenuItem>
+                  <MenuItem onClick={() => router.push("/my-applications")}>
+                    <Box as={FaRegListAlt} mr="12px" />
+                    <span>My applications</span>
+                  </MenuItem>
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup>
