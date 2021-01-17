@@ -55,6 +55,7 @@ const Sidebar = ({ user }) => {
         .map((v) => (
           <>
             <Button
+              key={v.id}
               size="lg"
               variant=""
               leftIcon={
