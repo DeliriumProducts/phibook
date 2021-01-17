@@ -1,8 +1,7 @@
 import {
-  Avatar,
   Box,
   Button,
-  Divider,
+  Checkbox,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -10,8 +9,6 @@ import {
   Heading,
   Input,
   Spinner,
-  Checkbox,
-  Text,
   Textarea,
   useToast,
 } from "@chakra-ui/react"
@@ -120,19 +117,6 @@ export default function Admin() {
                 {errors.arcTitle && "Title is required"}
               </FormErrorMessage>
             </FormControl>
-            <Checkbox
-              size="lg"
-              name="event"
-              colorScheme="purple"
-              onChange={(e) => {
-                setIsEvent(e.currentTarget.checked)
-              }}
-              ref={register}
-              defaultIsChecked
-            >
-              This is an event
-            </Checkbox>
-            {}
             <FormControl isInvalid={errors.arcBody}>
               <FormLabel>Body</FormLabel>
               <Textarea
@@ -146,6 +130,19 @@ export default function Admin() {
                 {errors.arcBody && "Body is required"}
               </FormErrorMessage>
             </FormControl>
+            <Checkbox
+              my={5}
+              size="lg"
+              name="event"
+              colorScheme="purple"
+              onChange={(e) => {
+                setIsEvent(e.currentTarget.checked)
+              }}
+              ref={register}
+              defaultIsChecked
+            >
+              This is an event
+            </Checkbox>
             <Button
               type="submit"
               my={2}

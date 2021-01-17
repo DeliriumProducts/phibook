@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Checkbox,
-  Divider,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -11,8 +10,6 @@ import {
   HStack,
   Input,
   Spinner,
-  Tag,
-  Text,
   Textarea,
   useToast,
 } from "@chakra-ui/react"
@@ -141,7 +138,20 @@ export default function Admin() {
                 {errors.jobSalary && "Salary is required"}
               </FormErrorMessage>
             </FormControl>
-            <HStack spacing={10} direction="row">
+            <FormControl isInvalid={errors.jobBody}>
+              <FormLabel>Body</FormLabel>
+              <Textarea
+                name="jobBody"
+                rounded={13}
+                onChange={(e) => setBody(e.currentTarget.value)}
+                ref={register({ required: true })}
+                placeholder="Your job body"
+              />
+              <FormErrorMessage>
+                {errors.jobBody && "Body is required"}
+              </FormErrorMessage>
+            </FormControl>
+            <HStack spacing={10} direction="row" my={5}>
               <Checkbox
                 size="lg"
                 name="remote"
@@ -167,19 +177,6 @@ export default function Admin() {
                 It offers flexible hours
               </Checkbox>
             </HStack>
-            <FormControl isInvalid={errors.jobBody}>
-              <FormLabel>Body</FormLabel>
-              <Textarea
-                name="jobBody"
-                rounded={13}
-                onChange={(e) => setBody(e.currentTarget.value)}
-                ref={register({ required: true })}
-                placeholder="Your job body"
-              />
-              <FormErrorMessage>
-                {errors.jobBody && "Body is required"}
-              </FormErrorMessage>
-            </FormControl>
             <Button
               type="submit"
               my={2}
