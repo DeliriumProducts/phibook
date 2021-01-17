@@ -55,25 +55,24 @@ const Sidebar = ({ user }) => {
       {users
         .filter((v) => v.id != user.id)
         .map((v) => (
-          <>
-            <Flex
-              alignItems="center"
-              justifyContent="space-between"
-              my="0.5rem"
-            >
-              <Text as="span">
-                {v.firstName} {v.lastName}
-              </Text>
-              <Box mr="12px">
-                <Avatar src={v.avatar} size="sm">
-                  <AvatarBadge
-                    boxSize="1.25em"
-                    bg={Math.random() > 0.5 ? "red.500" : "green.500"}
-                  />
-                </Avatar>
-              </Box>
-            </Flex>
-          </>
+          <Flex
+            alignItems="center"
+            justifyContent="space-between"
+            my="0.5rem"
+            key={v.id}
+          >
+            <Text as="span">
+              {v.firstName} {v.lastName}
+            </Text>
+            <Box mr="12px">
+              <Avatar src={v.avatar} size="sm">
+                <AvatarBadge
+                  boxSize="1.25em"
+                  bg={Math.random() > 0.5 ? "red.500" : "green.500"}
+                />
+              </Avatar>
+            </Box>
+          </Flex>
         ))}
     </Flex>
   )

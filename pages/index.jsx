@@ -78,7 +78,7 @@ const Index = () => {
         </Heading>
         <Divider />
         {news.map((v) => (
-          <>
+          <React.Fragment key={v.title}>
             <Flex alignItems="center" justifyContent="space-around" p="1rem">
               <Box key={v} m="0.5rem" p="1rem" flex={2}>
                 <Heading size="lg">{v.title}</Heading>
@@ -87,7 +87,7 @@ const Index = () => {
               <Avatar size="sm" src={v.publisherAvatar} />
             </Flex>
             <Divider />
-          </>
+          </React.Fragment>
         ))}
       </Flex>
     </Flex>
