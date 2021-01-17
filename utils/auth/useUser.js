@@ -68,7 +68,7 @@ const useUser = () => {
 
     return () => {
       cancelAuthListener()
-      cancelUserListener()
+      cancelUserListener?.()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
