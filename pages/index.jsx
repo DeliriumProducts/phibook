@@ -73,6 +73,7 @@ const Index = () => {
       <Sidebar user={user} />
       <Flex
         flex={3}
+        p="2rem"
         minHeight="100%"
         flexDirection="column"
         ml={{ sm: 0, md: 64 }}

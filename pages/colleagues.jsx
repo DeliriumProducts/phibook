@@ -76,7 +76,6 @@ const Colleagues = () => {
               department,
             } = user
 
-            console.log()
             if (
               !JSON.stringify(user)
                 .toLowerCase()
@@ -90,6 +89,7 @@ const Colleagues = () => {
                 key={user.id}
                 bg={bg}
                 m="2rem"
+                mb="2.5rem"
                 flexDir="column"
                 w={["100%", "30rem"]}
                 p="4rem"

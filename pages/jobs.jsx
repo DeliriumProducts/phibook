@@ -60,9 +60,10 @@ const Jobs = () => {
         flex={3}
         minHeight="100%"
         flexDirection="column"
+        p="2rem"
         ml={{ sm: 0, md: 64 }}
       >
-        <Heading size="3xl" p="1rem" position="sticky">
+        <Heading size="4xl" p="1rem" position="sticky">
           Jobs
         </Heading>
         {jobs.map((v) => (
