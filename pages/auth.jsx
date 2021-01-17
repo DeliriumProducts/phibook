@@ -134,11 +134,8 @@ const RegisterForm = () => {
       .auth()
       .createUserWithEmailAndPassword(values.email, values.pass)
       .then((data) => {
-        const { email, pass, ...valuesWithoutEmailAndPass } = values
-        firebase
-          .database()
-          .ref(`users/${data.user.uid}`)
-          .set(valuesWithoutEmailAndPass)
+        const { pass, ...valuesWith } = values
+        firebase.database().ref(`users/${data.user.uid}`).set(valuesWith)
         router.push("/")
       })
       .catch((err) => {
