@@ -7,8 +7,10 @@ const Sidebar = ({ user }) => {
   return (
     <Flex
       bg={sideBarBg}
-      position="sticky"
+      position="fixed"
       p="1rem"
+      w={64}
+      height="100%"
       display={{ base: "none", md: "flex" }}
     >
       <NextLink href="/my-profile">
