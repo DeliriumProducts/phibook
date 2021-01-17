@@ -6,6 +6,7 @@ import {
   Heading,
   Input,
   Spinner,
+  Text,
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react"
@@ -144,6 +145,12 @@ const Page = () => {
               variant="flushed"
               onChange={(e) => setPhone(e.currentTarget.value)}
             />
+            <Heading mt="1rem" size="md">
+              Department
+            </Heading>
+            <Text fontStyle="italic" mt=".5rem">
+              {user?.department}
+            </Text>
             <Flex mt="1rem" justifyContent="space-evenly">
               <Box
                 as={FaTwitter}

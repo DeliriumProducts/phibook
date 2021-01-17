@@ -65,7 +65,6 @@ const Jobs = () => {
         <Heading size="3xl" p="1rem" position="sticky">
           Jobs
         </Heading>
-        <Divider />
         {jobs.map((v) => (
           <React.Fragment key={v.title}>
             <Flex

@@ -5,6 +5,7 @@ import {
   FormControl,
   FormErrorMessage,
   Input,
+  Select,
   Text,
   useColorModeValue,
   useToast,
@@ -42,9 +43,7 @@ const LoginForm = () => {
   const router = useRouter()
   const toast = useToast()
   const [loading, setLoading] = React.useState(false)
-  const { register, handleSubmit, errors, reset } = useForm({
-    reValidateMode: "onBlur",
-  })
+  const { register, handleSubmit, errors, reset } = useForm()
   const bg = useColorModeValue("transparent", "transparent")
   const onSubmit = (values) => {
     setLoading(true)
@@ -124,9 +123,8 @@ const LoginForm = () => {
 
 const RegisterForm = () => {
   const router = useRouter()
-  const { register, handleSubmit, errors, reset } = useForm({
-    reValidateMode: "onBlur",
-  })
+  const { register, handleSubmit, errors, reset } = useForm()
+  const [departments, setDepartments] = React.useState([])
   const toast = useToast()
   const [loading, setLoading] = React.useState(false)
   const bg = useColorModeValue("transparent", "transparent")
@@ -152,6 +150,22 @@ const RegisterForm = () => {
       })
       .finally(() => setLoading(false))
   }
+
+  React.useEffect(() => {
+    return firebase
+      .database()
+      .ref("departments")
+      .on("value", (snapshot) => {
+        if (!snapshot) {
+          return
+        }
+        const n = []
+        snapshot.forEach((v) => {
+          n.push({ ...v.val(), id: v.key })
+        })
+        setDepartments(n)
+      })
+  }, [])
 
   return (
     <Flex
@@ -231,6 +245,22 @@ const RegisterForm = () => {
         />
         <FormErrorMessage>
           {errors.lastName && "last name is required"}
+        </FormErrorMessage>
+      </FormControl>
+      <FormControl isInvalid={errors.department}>
+        <Select
+          placeholder="Select department"
+          ref={register({ required: true })}
+          name="department"
+        >
+          {departments.map((v) => (
+            <option key={v.id} value={v.name}>
+              {v.name}
+            </option>
+          ))}
+        </Select>
+        <FormErrorMessage>
+          {errors.department && "department is required"}
         </FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={errors.pass}>

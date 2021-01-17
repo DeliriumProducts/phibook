@@ -80,7 +80,6 @@ const Index = () => {
         <Heading size="4xl" p="1rem">
           News
         </Heading>
-        <Divider />
         {/* <Flex align="center" justify="center" w="60%"> */}
         {news.map((v) => (
           <React.Fragment key={v.title}>
