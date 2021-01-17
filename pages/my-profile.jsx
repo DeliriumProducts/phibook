@@ -27,7 +27,6 @@ const Page = () => {
 
   const onClick = async () => {
     setIsLoading(true)
-    console.log(bio, job, phone)
     await firebase.database().ref(`users/${user?.id}`).update({
       workPosition: job,
       bio,
