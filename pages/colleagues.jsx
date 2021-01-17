@@ -33,10 +33,6 @@ const Colleagues = () => {
         }
         const n = []
         snapshot.forEach((v) => {
-          if (v.key === user?.id) {
-            return
-          }
-
           n.push({ ...v.val(), id: v.key })
         })
         setUsers(n)
@@ -85,6 +81,10 @@ const Colleagues = () => {
               department,
               admin: isAdmin,
             } = wholeUser
+
+            if (wholeUser.id == user?.id) {
+              return null
+            }
 
             if (
               !JSON.stringify(wholeUser)
