@@ -29,6 +29,7 @@ import {
   BsNewspaper,
   BsPencilSquare,
   BsPersonCheck,
+  BsBuilding,
 } from "react-icons/bs"
 import { FaRegListAlt } from "react-icons/fa"
 import { useUser } from "../utils/auth/useUser"
@@ -165,6 +166,10 @@ const Layout = ({ children }) => {
                       <MenuItem onClick={() => router.push("/new-job")}>
                         <Box as={BsPersonCheck} mr="12px" />
                         <span>New job position</span>
+                      </MenuItem>
+                      <MenuItem onClick={() => router.push("/new-department")}>
+                        <Box as={BsBuilding} mr="12px" />
+                        <span>New department</span>
                       </MenuItem>
                     </>
                   )}
