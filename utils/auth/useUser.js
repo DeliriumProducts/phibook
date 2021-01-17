@@ -45,6 +45,9 @@ const useUser = () => {
             .database()
             .ref(`users/${userData.id}`)
             .on("value", (snapshot) => {
+              if (!snapshot) {
+                return
+              }
               setUser({ ...userData, ...snapshot.val() })
             })
           setUserCookie(userData)
