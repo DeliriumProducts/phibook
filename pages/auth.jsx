@@ -59,7 +59,7 @@ const LoginForm = () => {
         })
         reset()
       })
-      .finally(() => setLoading(true))
+      .finally(() => setLoading(false))
   }
 
   return (
