@@ -80,8 +80,7 @@ const Layout = ({ children }) => {
                       mr={25}
                       variant={router.pathname === "/" ? "solid" : "ghost"}
                     >
-                      {" "}
-                      Home{" "}
+                      Home
                     </Button>
                   </Tooltip>
                 </LinkBox>
@@ -94,8 +93,7 @@ const Layout = ({ children }) => {
                       mr={25}
                       variant={router.pathname === "/jobs" ? "solid" : "ghost"}
                     >
-                      {" "}
-                      Jobs{" "}
+                      Jobs
                     </Button>
                   </Tooltip>
                 </LinkBox>
@@ -107,8 +105,7 @@ const Layout = ({ children }) => {
                       leftIcon={<BsFillChatFill />}
                       variant={router.pathname === "/chat" ? "solid" : "ghost"}
                     >
-                      {" "}
-                      Chat{" "}
+                      Chat
                     </Button>
                   </Tooltip>
                 </LinkBox>
