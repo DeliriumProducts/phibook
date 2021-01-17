@@ -1,12 +1,15 @@
 import {
   Avatar,
   Box,
+  Editable,
+  EditableInput,
+  EditablePreview,
   Flex,
   Heading,
-  Text,
   useColorModeValue,
 } from "@chakra-ui/react"
 import firebase from "firebase"
+import { FaFacebook, FaGithub, FaTwitter } from "react-icons/fa"
 import { useUser } from "../utils/auth/useUser"
 
 const Page = () => {
@@ -79,19 +82,74 @@ const Page = () => {
           <Heading textAlign="center">
             {user?.firstName} {user?.lastName}
           </Heading>
-          {user?.bio && (
-            <Text mt=".5rem" textAlign="center" fontStyle="italic">
-              "{user?.bio}"
-            </Text>
-          )}
+          <Editable
+            defaultValue={user?.bio}
+            onSubmit={(bio) => {
+              firebase.database().ref(`users/${user?.id}`).update({
+                bio: bio,
+              })
+            }}
+          >
+            <EditablePreview fontStyle="italic" textAlign="center" mt=".5rem" />
+            <EditableInput mt=".5rem" />
+          </Editable>
           <Heading mt="1rem" size="md">
             Job
           </Heading>
-          <Text fontSize="sm">{user?.workPosition}</Text>
+          <Editable
+            defaultValue={user?.workPosition}
+            onSubmit={(workPosition) => {
+              firebase.database().ref(`users/${user?.id}`).update({
+                workPosition: workPosition,
+              })
+            }}
+          >
+            <EditablePreview fontStyle="italic" textAlign="center" mt=".5rem" />
+            <EditableInput mt=".5rem" />
+          </Editable>
           <Heading mt="1rem" size="md">
             Phone
           </Heading>
-          <Text fontSize="sm">{user?.phone}</Text>
+          <Editable
+            defaultValue={user?.phone}
+            onSubmit={(phone) => {
+              firebase.database().ref(`users/${user?.id}`).update({
+                phone: phone,
+              })
+            }}
+          >
+            <EditablePreview fontStyle="italic" textAlign="center" mt=".5rem" />
+            <EditableInput mt=".5rem" />
+          </Editable>
+          <Flex mt="1rem" justifyContent="space-evenly">
+            <Box
+              as={FaTwitter}
+              opacity={user?.twitter ? "1" : "0.5"}
+              _hover={{
+                opacity: 1,
+              }}
+              transition="opacity ease-in-out 0.2s"
+              boxSize="3rem"
+            />
+            <Box
+              as={FaGithub}
+              opacity={user?.github ? "1" : "0.5"}
+              _hover={{
+                opacity: 1,
+              }}
+              transition="opacity ease-in-out 0.2s"
+              boxSize="3rem"
+            />
+            <Box
+              as={FaFacebook}
+              transition="opacity ease-in-out 0.2s"
+              opacity={user?.facebook ? "1" : "0.5"}
+              _hover={{
+                opacity: 1,
+              }}
+              boxSize="3rem"
+            />
+          </Flex>
         </Flex>
       </Flex>
     </Flex>

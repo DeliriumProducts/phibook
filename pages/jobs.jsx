@@ -7,7 +7,7 @@ import {
   Spinner,
   Tag,
   Text,
-  useToast
+  useToast,
 } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { Sidebar } from "../components/Sidebar"
@@ -108,7 +108,12 @@ const Positions = () => {
                   await firebase
                     .database()
                     .ref(`applications`)
-                    .push({ ...v, userId: user.id })
+                    .push({
+                      ...v,
+                      id: user.id,
+                      email: user.email,
+                      avatar: user.avatar,
+                    })
                   toast({
                     title: "Successfully applied to job!",
                     status: "success",
