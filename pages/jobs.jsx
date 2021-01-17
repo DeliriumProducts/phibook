@@ -1,4 +1,13 @@
-import { Box, Divider, Flex, Heading, Spinner } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Heading,
+  Spinner,
+  Tag,
+  Text,
+} from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { Sidebar } from "../components/Sidebar"
 import firebase from "../firebase"
@@ -59,10 +68,40 @@ const Positions = () => {
         <Divider />
         {jobs.map((v) => (
           <>
-            <Box key={v} m="1rem" p="1rem">
-              <Heading size="lg">{v.title}</Heading>
-              <Text>{v.content}</Text>
-            </Box>
+            <Flex
+              key={v.title}
+              alignItems="center"
+              justifyContent="space-between"
+              p="1rem"
+              flexWrap="wrap"
+            >
+              <Box key={v} p="1rem">
+                <Heading size="lg" mb=".5rem">
+                  {v.title}
+                </Heading>
+                <Tag colorScheme="green" mb=".5rem">
+                  {v.salary}
+                </Tag>
+                {v.remote ? (
+                  <Tag colorScheme="purple" mb=".5rem" ml={2}>
+                    Remote
+                  </Tag>
+                ) : (
+                  <Tag colorScheme="yellow" mb=".5rem" ml={2}>
+                    Local
+                  </Tag>
+                )}
+                {v.flexibleHours && (
+                  <Tag colorScheme="blue" mb=".5rem" ml={2}>
+                    Flexible hours
+                  </Tag>
+                )}
+                <Text>{v.content}</Text>
+              </Box>
+              <Button size="lg" w={["100%", "6rem"]}>
+                Apply
+              </Button>
+            </Flex>
             <Divider />
           </>
         ))}
