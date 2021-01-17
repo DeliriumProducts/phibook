@@ -137,11 +137,15 @@ const Page = () => {
               Phone
             </Heading>
             <Input
+              type="number"
               value={phone}
               fontStyle="italic"
               mt=".5rem"
               variant="flushed"
-              onChange={(e) => setPhone(e.currentTarget.value)}
+              onChange={(e) => {
+                if (e.currentTarget.value.length < 14)
+                  setPhone(e.currentTarget.value)
+              }}
             />
             <Heading mt="1rem" size="md">
               Department
