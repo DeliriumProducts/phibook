@@ -31,8 +31,8 @@ import {
   BsPencilSquare,
   BsPersonCheck,
 } from "react-icons/bs"
-import { MdEventAvailable } from "react-icons/md"
 import { FaRegListAlt } from "react-icons/fa"
+import { MdEventAvailable } from "react-icons/md"
 import { useUser } from "../utils/auth/useUser"
 
 // https://github.com/leerob/leerob.io/blob/b061aac7bdedd51dd511adb751483ef47c18b0e6/components/Container.js#L8
@@ -157,6 +157,10 @@ const Layout = ({ children }) => {
                     <Box as={FaRegListAlt} mr="12px" />
                     <span>My applications</span>
                   </MenuItem>
+                  <MenuItem onClick={() => router.push("/events")}>
+                    <Box as={MdEventAvailable} mr="12px" />
+                    <span>Company events</span>
+                  </MenuItem>
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup>
@@ -173,10 +177,6 @@ const Layout = ({ children }) => {
                       <MenuItem onClick={() => router.push("/new-department")}>
                         <Box as={BsBuilding} mr="12px" />
                         <span>New department</span>
-                      </MenuItem>
-                      <MenuItem onClick={() => router.push("/events")}>
-                        <Box as={MdEventAvailable} mr="12px" />
-                        <span>Company events</span>
                       </MenuItem>
                     </>
                   )}
