@@ -1,18 +1,23 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import {
-  Button, Flex,
+  Button,
+  Flex,
   Heading,
   IconButton,
   LinkBox,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Tooltip,
   useColorMode,
-
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react"
 import { transparentize } from "@chakra-ui/theme-tools"
 import styled from "@emotion/styled"
 import NextLink from "next/link"
 import { useRouter } from "next/router"
+import { AiFillCaretDown } from "react-icons/ai"
 import { BiLogOut } from "react-icons/bi"
 import { BsFillChatFill, BsFillPeopleFill, BsNewspaper } from "react-icons/bs"
 import { useUser } from "../utils/auth/useUser"
@@ -79,7 +84,10 @@ const Layout = ({ children }) => {
                       leftIcon={<BsNewspaper />}
                       mr={25}
                       variant={router.pathname === "/" ? "solid" : "ghost"}
-                    > Home </Button>
+                    >
+                      {" "}
+                      Home{" "}
+                    </Button>
                   </Tooltip>
                 </LinkBox>
               </NextLink>
@@ -92,7 +100,10 @@ const Layout = ({ children }) => {
                       variant={
                         router.pathname === "/positions" ? "solid" : "ghost"
                       }
-                    > Jobs </Button> 
+                    >
+                      {" "}
+                      Jobs{" "}
+                    </Button>
                   </Tooltip>
                 </LinkBox>
               </NextLink>
@@ -100,22 +111,40 @@ const Layout = ({ children }) => {
                 <LinkBox>
                   <Tooltip label="Chat" fontSize="md">
                     <Button
-                      leftIcon={<BsFillChatFill/>}
+                      leftIcon={<BsFillChatFill />}
                       variant={router.pathname === "/chat" ? "solid" : "ghost"}
-                    > Chat </Button> 
+                    >
+                      {" "}
+                      Chat{" "}
+                    </Button>
                   </Tooltip>
                 </LinkBox>
               </NextLink>
             </Flex>
-            <IconButton
-              variant="ghost"
-              onClick={logout}
-              icon={<BiLogOut />}
-            ></IconButton>
+            <Menu>
+              <MenuButton bg={"transparent"} as={Button}>
+                <IconButton
+                  variant="ghost"
+                  onClick={logout}
+                  icon={<AiFillCaretDown />}
+                />
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={logout}>
+                  <Button
+                    variant="ghost"
+                    onClick={logout}
+                    leftIcon={<BiLogOut />}
+                  >
+                    Logout
+                  </Button>
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </>
         )}
       </StickyNav>
-      {children}
+
       <IconButton
         aria-label="Toggle dark mode"
         position="fixed"
