@@ -1,10 +1,10 @@
 import {
   Avatar,
-  Box,
-  Divider,
   Flex,
+  Divider,
   Heading,
   Spinner,
+  Box,
   Text,
 } from "@chakra-ui/react"
 import axios from "axios"
@@ -77,18 +77,23 @@ const Index = () => {
           News
         </Heading>
         <Divider />
-        {news.map((v) => (
+        {/* <Flex align="center" justify="center" w="60%"> */}
+        {news.reverse().map((v) => (
           <React.Fragment key={v.title}>
             <Flex alignItems="center" justifyContent="space-around" p="1rem">
               <Box key={v} m="0.5rem" p="1rem" flex={2}>
-                <Heading size="lg">{v.title}</Heading>
+                <Flex mb="1rem" flexDirection="row" alignItems="center">
+                  <Avatar size="md" src={v.publisherAvatar} />
+                  <Text ml="0.5rem">{`${v?.publisher}`}</Text>
+                </Flex>
+                <Heading size="md">{v.title}</Heading>
                 <Text mt=".5rem">{v.content}</Text>
               </Box>
-              <Avatar size="md" src={v.publisherAvatar} />
             </Flex>
             <Divider />
           </React.Fragment>
         ))}
+        {/* </Flex> */}
       </Flex>
     </Flex>
   )

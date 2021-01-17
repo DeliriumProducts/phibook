@@ -55,6 +55,7 @@ export default function Admin() {
   const onSubmit = ({ arcTitle, arcBody }) => {
     const data = {
       title: arcTitle,
+      publisher: user.firstName + " " + user.lastName,
       content: arcBody,
       publisherAvatar: user.avatar,
     }
@@ -149,7 +150,7 @@ export default function Admin() {
         <React.Fragment>
           <Flex alignItems="center" justifyContent="space-around" p="1rem">
             <Box m="0.5rem" p="1rem" flex={2}>
-              <Heading size="lg">{title}</Heading>
+              <Heading size="md">{title}</Heading>
               <Text>{body}</Text>
             </Box>
             {title === "" && body === "" ? (
