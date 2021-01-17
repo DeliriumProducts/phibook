@@ -1,5 +1,6 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import {
+  Box,
   Button,
   Flex,
   Heading,
@@ -118,21 +119,12 @@ const Layout = ({ children }) => {
             </Flex>
             <Menu>
               <MenuButton bg={"transparent"} as={Button}>
-                <IconButton
-                  variant="ghost"
-                  onClick={logout}
-                  icon={<AiFillCaretDown />}
-                />
+                <IconButton variant="ghost" icon={<AiFillCaretDown />} />
               </MenuButton>
               <MenuList>
                 <MenuItem onClick={logout}>
-                  <Button
-                    variant="ghost"
-                    onClick={logout}
-                    leftIcon={<BiLogOut />}
-                  >
-                    Logout
-                  </Button>
+                  <Box as={BiLogOut} mr="12px" />
+                  <span>Logout</span>
                 </MenuItem>
               </MenuList>
             </Menu>
