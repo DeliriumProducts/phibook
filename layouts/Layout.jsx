@@ -1,11 +1,11 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import {
+  Avatar,
   Box,
   Button,
   Flex,
   Heading,
   IconButton,
-  Image,
   LinkBox,
   Menu,
   MenuButton,
@@ -144,9 +144,9 @@ const Layout = ({ children }) => {
                     onClick={() => router.push("/my-profile")}
                     minH="48px"
                   >
-                    <Image
+                    <Avatar
                       boxSize="2rem"
-                      borderRadius="full"
+                      // borderRadius="full"
                       src={user.avatar}
                       alt="User avatar"
                       mr="12px"
