@@ -31,6 +31,7 @@ import {
   BsPencilSquare,
   BsPersonCheck,
 } from "react-icons/bs"
+import { MdEventAvailable } from "react-icons/md"
 import { FaRegListAlt } from "react-icons/fa"
 import { useUser } from "../utils/auth/useUser"
 
@@ -172,6 +173,10 @@ const Layout = ({ children }) => {
                       <MenuItem onClick={() => router.push("/new-department")}>
                         <Box as={BsBuilding} mr="12px" />
                         <span>New department</span>
+                      </MenuItem>
+                      <MenuItem onClick={() => router.push("/events")}>
+                        <Box as={MdEventAvailable} mr="12px" />
+                        <span>Company events</span>
                       </MenuItem>
                     </>
                   )}

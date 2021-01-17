@@ -10,6 +10,7 @@ import {
   Heading,
   Input,
   Spinner,
+  Checkbox,
   Text,
   Textarea,
   useToast,
@@ -27,6 +28,7 @@ export default function Admin() {
   const router = useRouter()
   const [title, setTitle] = React.useState("")
   const [body, setBody] = React.useState("")
+  const [isEvent, setIsEvent] = React.useState(false)
 
   const [formLoading, setFormLoading] = React.useState(false)
   const { register, handleSubmit, errors, reset } = useForm({
@@ -52,11 +54,12 @@ export default function Admin() {
     router.push("/")
   }
 
-  const onSubmit = ({ arcTitle, arcBody }) => {
+  const onSubmit = ({ arcTitle, arcBody, event }) => {
     const data = {
       title: arcTitle,
       publisher: user.firstName + " " + user.lastName,
       content: arcBody,
+      event,
       publisherAvatar: user.avatar,
     }
 
@@ -117,6 +120,19 @@ export default function Admin() {
                 {errors.arcTitle && "Title is required"}
               </FormErrorMessage>
             </FormControl>
+            <Checkbox
+              size="lg"
+              name="event"
+              colorScheme="purple"
+              onChange={(e) => {
+                setIsEvent(e.currentTarget.checked)
+              }}
+              ref={register}
+              defaultIsChecked
+            >
+              This is an event
+            </Checkbox>
+            {}
             <FormControl isInvalid={errors.arcBody}>
               <FormLabel>Body</FormLabel>
               <Textarea

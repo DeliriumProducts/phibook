@@ -7,6 +7,7 @@ import {
   IconButton,
   Spinner,
   Text,
+  Button,
   useToast,
 } from "@chakra-ui/react"
 import axios from "axios"
@@ -88,9 +89,52 @@ const Index = () => {
               <Box key={v} m="0.5rem" p="1rem" flex={2}>
                 <Heading size="md">{v.title}</Heading>
                 <Text mt=".5rem">{v.content}</Text>
+
                 <Flex mt="1rem" flexDirection="row" alignItems="center">
                   <Avatar size="md" src={v.publisherAvatar} />
-                  <Text ml="1rem">{`${v?.publisher}`}</Text>
+                  <Text mx="1rem">{`${v?.publisher}`}</Text>
+                  {v.event && (
+                    <Button
+                      type="submit"
+                      disabled={
+                        v?.attendees &&
+                        Object.keys(v?.attendees)
+                          .map((a) => v?.attendees[a].user.id)
+                          .includes(user.id)
+                      }
+                      my={2}
+                      size="md"
+                      onClick={() => {
+                        firebase
+                          .database()
+                          .ref(`news/${v.id}/attendees`)
+                          .push({
+                            user: {
+                              id: user.id,
+                              name: `${user.firstName} ${user.lastName}`,
+                              avatar: user.avatar,
+                            },
+                          })
+                          .then(() => {
+                            toast({
+                              title:
+                                "Successfuly marked as an attendant of this event!",
+                              status: "success",
+                            })
+                          })
+                          .catch((err) => {
+                            toast({
+                              title: err.toString(),
+                              status: "error",
+                            })
+                          })
+                      }}
+                      rounded={13}
+                      padding="10px"
+                    >
+                      Attend
+                    </Button>
+                  )}
                 </Flex>
               </Box>
               {user?.admin && (
