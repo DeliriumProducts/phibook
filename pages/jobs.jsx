@@ -14,7 +14,7 @@ import { Sidebar } from "../components/Sidebar"
 import firebase from "../firebase"
 import { useUser } from "../utils/auth/useUser"
 
-const Positions = () => {
+const Jobs = () => {
   const { user, loading } = useUser()
   const router = useRouter()
   const toast = useToast()
@@ -99,6 +99,7 @@ const Positions = () => {
               </Box>
               <Button
                 size="lg"
+                mr="1.5rem"
                 disabled={
                   user?.applications &&
                   Object.keys(user?.applications)
@@ -137,4 +138,4 @@ const Positions = () => {
   )
 }
 
-export default Positions
+export default Jobs
