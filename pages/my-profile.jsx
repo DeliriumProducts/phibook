@@ -96,6 +96,7 @@ const Page = () => {
               size="2xl"
               marginTop="-8rem"
               src={url || user?.avatar}
+              cursor="pointer"
               _hover={{
                 opacity: 0.4,
                 transition: "opacity ease-in-out 0.2s",
