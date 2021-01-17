@@ -38,7 +38,6 @@ import { useUser } from "../utils/auth/useUser"
 const StickyNav = styled(Flex)`
   z-index: 10;
   top: 0;
-  backdrop-filter: blur(1rem);
   padding-top: 0.65rem;
   padding-bottom: 0.65rem;
 `
@@ -46,8 +45,8 @@ const StickyNav = styled(Flex)`
 const Layout = ({ children }) => {
   const bg = useColorModeValue("gray.50", "gray.900")
   const navBgColor = useColorModeValue(
-    transparentize("white", 0.8),
-    transparentize("gray.800", 0.8)
+    transparentize("white", 1),
+    transparentize("gray.800", 1)
   )
   const { toggleColorMode } = useColorMode()
   const icon = useColorModeValue(<MoonIcon />, <SunIcon />)
