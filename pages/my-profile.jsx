@@ -1,12 +1,14 @@
 import {
   Avatar,
   Box,
-  Editable,
-  EditableInput,
-  EditablePreview,
+  Button,
   Flex,
   Heading,
+  Input,
+  Spinner,
+  Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react"
 import firebase from "firebase"
 import { FaFacebook, FaGithub, FaTwitter } from "react-icons/fa"
@@ -14,9 +16,36 @@ import { useUser } from "../utils/auth/useUser"
 
 const Page = () => {
   const { user, logout, loading } = useUser()
+  const toast = useToast()
   const bg = useColorModeValue("white", "gray.800")
   const imageRef = React.useRef()
   const [url, setURL] = React.useState("")
+  const [phone, setPhone] = React.useState("")
+  const [bio, setBio] = React.useState("")
+  const [isLoading, setIsLoading] = React.useState(false)
+
+  const onClick = async () => {
+    setIsLoading(true)
+    await Promise.all([
+      firebase.database().ref(`users/${user?.id}`).update({
+        bio: bio,
+      }),
+      firebase.database().ref(`users/${user?.id}`).update({
+        phone: phone,
+      }),
+    ])
+    setIsLoading(false)
+
+    toast({
+      title: "Successfully updated profile!",
+      status: "success",
+    })
+  }
+
+  React.useEffect(() => {
+    setBio(user?.bio)
+    setPhone(user?.phone)
+  }, [user?.bio, user?.phone])
 
   const upload = async (e) => {
     e.preventDefault()
@@ -48,110 +77,104 @@ const Page = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Flex
-        bg={bg}
-        minH="20rem"
-        minW="20rem"
-        flexDir="column"
-        p="4rem"
-        borderRadius="lg"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Box>
-          <Avatar
-            size="2xl"
-            marginTop="-8rem"
-            src={url || user?.avatar}
-            _hover={{
-              opacity: 0.4,
-              transition: "opacity ease-in-out 0.2s",
-            }}
-            onClick={() => {
-              imageRef.current.click()
-            }}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Flex
+          bg={bg}
+          minH="20rem"
+          minW="20rem"
+          flexDir="column"
+          p="4rem"
+          borderRadius="lg"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box>
+            <Avatar
+              size="2xl"
+              marginTop="-8rem"
+              src={url || user?.avatar}
+              _hover={{
+                opacity: 0.4,
+                transition: "opacity ease-in-out 0.2s",
+              }}
+              onClick={() => {
+                imageRef.current.click()
+              }}
+            />
+          </Box>
+          <Input
+            type="file"
+            ref={imageRef}
+            style={{ display: "none" }}
+            onChange={upload}
           />
-        </Box>
-        <input
-          type="file"
-          ref={imageRef}
-          style={{ display: "none" }}
-          onChange={upload}
-        />
-        <Flex justifyContent="center" flexDirection="column">
-          <Heading textAlign="center">
-            {user?.firstName} {user?.lastName}
-          </Heading>
-          <Editable
-            defaultValue={user?.bio}
-            onSubmit={(bio) => {
-              firebase.database().ref(`users/${user?.id}`).update({
-                bio: bio,
-              })
-            }}
-          >
-            <EditablePreview fontStyle="italic" textAlign="center" mt=".5rem" />
-            <EditableInput mt=".5rem" />
-          </Editable>
-          <Heading mt="1rem" size="md">
-            Job
-          </Heading>
-          <Editable
-            defaultValue={user?.workPosition}
-            onSubmit={(workPosition) => {
-              firebase.database().ref(`users/${user?.id}`).update({
-                workPosition: workPosition,
-              })
-            }}
-          >
-            <EditablePreview fontStyle="italic" textAlign="center" mt=".5rem" />
-            <EditableInput mt=".5rem" />
-          </Editable>
-          <Heading mt="1rem" size="md">
-            Phone
-          </Heading>
-          <Editable
-            defaultValue={user?.phone}
-            onSubmit={(phone) => {
-              firebase.database().ref(`users/${user?.id}`).update({
-                phone: phone,
-              })
-            }}
-          >
-            <EditablePreview fontStyle="italic" textAlign="center" mt=".5rem" />
-            <EditableInput mt=".5rem" />
-          </Editable>
-          <Flex mt="1rem" justifyContent="space-evenly">
-            <Box
-              as={FaTwitter}
-              opacity={user?.twitter ? "1" : "0.5"}
-              _hover={{
-                opacity: 1,
-              }}
-              transition="opacity ease-in-out 0.2s"
-              boxSize="3rem"
+          <Flex justifyContent="center" flexDirection="column">
+            <Heading textAlign="center">
+              {user?.firstName} {user?.lastName}
+            </Heading>
+            <Heading mt="1rem" size="md">
+              Job
+            </Heading>
+            <Text fontStyle="italic" mt=".5rem">
+              {user?.workPosition}
+            </Text>
+            <Heading mt="1rem" size="md">
+              Bio
+            </Heading>
+            <Input
+              variant="flushed"
+              value={bio}
+              fontStyle="italic"
+              mt=".5rem"
+              onChange={(e) => setBio(e.currentTarget.value)}
             />
-            <Box
-              as={FaGithub}
-              opacity={user?.github ? "1" : "0.5"}
-              _hover={{
-                opacity: 1,
-              }}
-              transition="opacity ease-in-out 0.2s"
-              boxSize="3rem"
+            <Heading mt="1rem" size="md">
+              Phone
+            </Heading>
+            <Input
+              value={phone}
+              fontStyle="italic"
+              mt=".5rem"
+              variant="flushed"
+              onChange={(e) => setPhone(e.currentTarget.value)}
             />
-            <Box
-              as={FaFacebook}
-              transition="opacity ease-in-out 0.2s"
-              opacity={user?.facebook ? "1" : "0.5"}
-              _hover={{
-                opacity: 1,
-              }}
-              boxSize="3rem"
-            />
+            <Flex mt="1rem" justifyContent="space-evenly">
+              <Box
+                as={FaTwitter}
+                opacity={user?.twitter ? "1" : "0.5"}
+                _hover={{
+                  opacity: 1,
+                }}
+                transition="opacity ease-in-out 0.2s"
+                boxSize="3rem"
+              />
+              <Box
+                as={FaGithub}
+                opacity={user?.github ? "1" : "0.5"}
+                _hover={{
+                  opacity: 1,
+                }}
+                transition="opacity ease-in-out 0.2s"
+                boxSize="3rem"
+              />
+              <Box
+                as={FaFacebook}
+                transition="opacity ease-in-out 0.2s"
+                opacity={user?.facebook ? "1" : "0.5"}
+                _hover={{
+                  opacity: 1,
+                }}
+                boxSize="3rem"
+              />
+            </Flex>
+            <Button mt="2rem" onClick={onClick} isLoading={isLoading}>
+              Save
+            </Button>
           </Flex>
         </Flex>
-      </Flex>
+      )}
     </Flex>
   )
 }
