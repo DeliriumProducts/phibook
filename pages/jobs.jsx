@@ -8,6 +8,23 @@ const Positions = () => {
 
   const router = useRouter()
 
+  const [jobs, setJobs] = React.useState([])
+  React.useEffect(() => {
+    return firebase
+      .database()
+      .ref("jobs")
+      .on("value", (snapshot) => {
+        if (!snapshot) {
+          return
+        }
+        const n = []
+        snapshot.forEach((v) => {
+          n.push(v.val())
+        })
+        setJobs(n)
+      })
+  }, [])
+
   if (loading || (!user && !loading)) {
     return (
       <Flex
@@ -33,10 +50,14 @@ const Positions = () => {
         <Heading size="3xl" p="1rem" position="sticky">
           Jobs
         </Heading>
-        {[...Array(1000).keys()].map((v) => (
-          <Box w="5rem" h="5rem" bg="pink.50" key={v} m="1rem">
-            {v}
-          </Box>
+        {jobs.map((v) => (
+          <>
+            <Box key={v} m="1rem" p="1rem">
+              <Heading size="lg">{v.title}</Heading>
+              <Text>{v.content}</Text>
+            </Box>
+            <Divider />
+          </>
         ))}
       </Flex>
     </Flex>

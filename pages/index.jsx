@@ -22,7 +22,6 @@ const Index = () => {
   const router = useRouter()
 
   const [news, setNews] = React.useState([])
-
   React.useEffect(() => {
     return firebase
       .database()
@@ -71,7 +70,7 @@ const Index = () => {
               <Heading size="lg">{v.title}</Heading>
               <Text>{v.content}</Text>
             </Box>
-            {<Divider />}
+            <Divider />
           </>
         ))}
       </Flex>

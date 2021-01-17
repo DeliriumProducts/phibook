@@ -6,10 +6,9 @@ const Sidebar = ({ user }) => {
 
   return (
     <Flex
-      flex={1}
       minHeight="100%"
       bg={sideBarBg}
-      p=".3rem"
+      p="1rem"
       display={{ base: "none", md: "flex" }}
     >
       <NextLink href="/my-profile">
