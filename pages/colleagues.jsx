@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  Checkbox,
   Flex,
   FormLabel,
   Heading,
@@ -32,6 +33,10 @@ const Colleagues = () => {
         }
         const n = []
         snapshot.forEach((v) => {
+          if (v.key === user?.id) {
+            return
+          }
+
           n.push({ ...v.val(), id: v.key })
         })
         setUsers(n)
@@ -67,7 +72,7 @@ const Colleagues = () => {
       />
       <Flex w="100%" minHeight="100%" flexGrow={1} flexDir="column" mt="5rem">
         <Flex flexDir="column" justifyContent="center" alignItems="center">
-          {users.map((user) => {
+          {users.map((wholeUser) => {
             const {
               firstName,
               lastName,
@@ -78,10 +83,11 @@ const Colleagues = () => {
               bio,
               avatar,
               department,
-            } = user
+              admin: isAdmin,
+            } = wholeUser
 
             if (
-              !JSON.stringify(user)
+              !JSON.stringify(wholeUser)
                 .toLowerCase()
                 .includes(filter.toLocaleLowerCase())
             ) {
@@ -90,7 +96,7 @@ const Colleagues = () => {
 
             return (
               <Flex
-                key={user.id}
+                key={wholeUser.id}
                 bg={bg}
                 m="2rem"
                 mb="2.5rem"
@@ -139,15 +145,32 @@ const Colleagues = () => {
                     {email}
                   </Text>
                 </Flex>
-                <IconButton
-                  icon={<AiFillHeart />}
-                  onClick={() => {
-                    toast({
-                      title: `You sent a thank you to ${firstName}!`,
-                      status: "success",
-                    })
-                  }}
-                />
+                <Flex alignItems="center" mt="1rem">
+                  <IconButton
+                    icon={<AiFillHeart />}
+                    onClick={() => {
+                      toast({
+                        title: `You sent a thank you message to ${firstName}!`,
+                        status: "success",
+                      })
+                    }}
+                  />
+                  {user?.admin && (
+                    <Checkbox
+                      ml="1rem"
+                      colorScheme="purple"
+                      isChecked={isAdmin}
+                      onChange={(e) => {
+                        firebase
+                          .database()
+                          .ref(`users/${wholeUser.id}`)
+                          .update({ admin: e.currentTarget.checked })
+                      }}
+                    >
+                      Admin?
+                    </Checkbox>
+                  )}
+                </Flex>
               </Flex>
             )
           })}
