@@ -82,9 +82,9 @@ const Index = () => {
             <Flex alignItems="center" justifyContent="space-around" p="1rem">
               <Box key={v} m="0.5rem" p="1rem" flex={2}>
                 <Heading size="lg">{v.title}</Heading>
-                <Text>{v.content}</Text>
+                <Text mt=".5rem">{v.content}</Text>
               </Box>
-              <Avatar size="sm" src={v.publisherAvatar} />
+              <Avatar size="md" src={v.publisherAvatar} />
             </Flex>
             <Divider />
           </React.Fragment>

@@ -33,18 +33,24 @@ const useUser = () => {
     // Firebase updates the id token every hour, this
     // makes sure the react state and the cookie are
     // both kept up to date
+
+    let cancelUserListener
+
     const cancelAuthListener = firebase
       .auth()
       .onIdTokenChanged(async (user) => {
         if (user) {
           const userData = await mapUserData(user)
-          const snapshot = await firebase
+          cancelUserListener = firebase
             .database()
             .ref(`users/${userData.id}`)
-            .once("value")
-          const val = snapshot.val()
+            .on("value", (snapshot) => {
+              if (!snapshot) {
+                return
+              }
+              setUser({ ...userData, ...snapshot.val() })
+            })
           setUserCookie(userData)
-          setUser({ ...userData, ...val })
           setLoading(false)
         } else {
           removeUserCookie()
@@ -62,6 +68,7 @@ const useUser = () => {
 
     return () => {
       cancelAuthListener()
+      cancelUserListener()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

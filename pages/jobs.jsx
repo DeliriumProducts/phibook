@@ -7,6 +7,7 @@ import {
   Spinner,
   Tag,
   Text,
+  useToast
 } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { Sidebar } from "../components/Sidebar"
@@ -15,9 +16,8 @@ import { useUser } from "../utils/auth/useUser"
 
 const Positions = () => {
   const { user, loading } = useUser()
-
   const router = useRouter()
-
+  const toast = useToast()
   const [jobs, setJobs] = React.useState([])
   React.useEffect(() => {
     return firebase
@@ -29,7 +29,7 @@ const Positions = () => {
         }
         const n = []
         snapshot.forEach((v) => {
-          n.push(v.val())
+          n.push({ ...v.val(), id: v.key })
         })
         setJobs(n)
       })
@@ -97,7 +97,24 @@ const Positions = () => {
                 )}
                 <Text>{v.content}</Text>
               </Box>
-              <Button size="lg" w={["100%", "6rem"]}>
+              <Button
+                size="lg"
+                w={["100%", "6rem"]}
+                onClick={async () => {
+                  await firebase
+                    .database()
+                    .ref(`users/${user.id}/applications`)
+                    .push(v)
+                  await firebase
+                    .database()
+                    .ref(`applications`)
+                    .push({ ...v, userId: user.id })
+                  toast({
+                    title: "Successfully applied to job!",
+                    status: "success",
+                  })
+                }}
+              >
                 Apply
               </Button>
             </Flex>
