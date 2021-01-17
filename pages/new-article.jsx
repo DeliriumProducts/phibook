@@ -1,26 +1,26 @@
 import {
-  Flex,
-  Input,
+  Avatar,
   Box,
-  FormLabel,
+  Button,
+  Divider,
+  Flex,
   FormControl,
   FormErrorMessage,
+  FormLabel,
   Heading,
-  Button,
-  useToast,
+  Input,
   Spinner,
-  Avatar,
-  Divider,
   Text,
   Textarea,
+  useToast,
 } from "@chakra-ui/react"
 import "firebase/auth"
+import { useRouter } from "next/router"
 import React from "react"
 import { useForm } from "react-hook-form"
 import { Sidebar } from "../components/Sidebar"
-import { useUser } from "../utils/auth/useUser"
 import firebase from "../firebase"
-import { useRouter } from "next/router"
+import { useUser } from "../utils/auth/useUser"
 
 export default function Admin() {
   const { user, loading } = useUser()
@@ -148,18 +148,21 @@ export default function Admin() {
           Preview
         </Heading>
         <React.Fragment>
-          <Flex alignItems="center" justifyContent="space-around" p="1rem">
-            <Box m="0.5rem" p="1rem" flex={2}>
-              <Heading size="md">{title}</Heading>
-              <Text>{body}</Text>
-            </Box>
-            {title === "" && body === "" ? (
-              <></>
-            ) : (
-              <Avatar size="sm" src={user.avatar} />
-            )}
-          </Flex>
-          <Divider />
+          {title === "" && body === "" ? null : (
+            <React.Fragment>
+              <Flex alignItems="center" justifyContent="space-around" p="1rem">
+                <Box m="0.5rem" p="1rem" flex={2}>
+                  <Heading size="md">{title}</Heading>
+                  <Text mt=".5rem">{body}</Text>
+                  <Flex mt="1rem" flexDirection="row" alignItems="center">
+                    <Avatar size="md" src={user?.avatar} />
+                    <Text ml="1rem">{`${user?.firstName} ${user?.lastName}`}</Text>
+                  </Flex>
+                </Box>
+              </Flex>
+              <Divider />
+            </React.Fragment>
+          )}
         </React.Fragment>
       </Flex>
     </Flex>

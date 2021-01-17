@@ -56,6 +56,9 @@ const Sidebar = ({ user }) => {
           {user?.firstName} {user?.lastName}
         </Button>
       </NextLink>
+      <Text textAlign="center" fontStyle="italic">
+        "{user?.bio}"
+      </Text>
       <Heading size="md" my="1rem">
         Colleagues
       </Heading>
