@@ -26,7 +26,6 @@ export default function Admin() {
   const [title, setTitle] = React.useState("")
   const [body, setBody] = React.useState("")
   const [isEvent, setIsEvent] = React.useState(false)
-
   const [formLoading, setFormLoading] = React.useState(false)
   const { register, handleSubmit, errors, reset } = useForm({
     reValidateMode: "onBlur",
@@ -146,12 +145,11 @@ export default function Admin() {
             <Button
               type="submit"
               my={2}
-              isLoading={loading}
               w="100%"
               size="lg"
               rounded={13}
               padding="10px"
-              loading={formLoading}
+              isLoading={formLoading}
             >
               Submit
             </Button>
