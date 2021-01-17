@@ -49,7 +49,7 @@ const Sidebar = ({ user }) => {
           {user?.firstName} {user?.lastName}
         </Button>
       </NextLink>
-      <Divider my="1rem" />
+      <Divider />
       {users
         .filter((v) => v.id != user.id)
         .map((v) => (
@@ -59,7 +59,10 @@ const Sidebar = ({ user }) => {
               variant=""
               leftIcon={
                 <Avatar src={v.avatar} size="sm">
-                  <AvatarBadge boxSize="1.25em" bg="green.500" />
+                  <AvatarBadge
+                    boxSize="1.25em"
+                    bg={Math.random() > 0.5 ? "red.500" : "green.500"}
+                  />
                 </Avatar>
               }
             >
