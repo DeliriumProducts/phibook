@@ -84,7 +84,7 @@ const Index = () => {
                 <Heading size="lg">{v.title}</Heading>
                 <Text mt=".5rem">{v.content}</Text>
               </Box>
-              <Avatar size="sm" src={v.publisherAvatar} />
+              <Avatar size="md" src={v.publisherAvatar} />
             </Flex>
             <Divider />
           </React.Fragment>

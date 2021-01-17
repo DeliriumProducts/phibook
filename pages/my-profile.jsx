@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Box,
   Flex,
   Heading,
   Text,
@@ -50,14 +49,14 @@ const Page = () => {
         minH="20rem"
         minW="20rem"
         flexDir="column"
-        p="1rem"
+        p="4rem"
         borderRadius="lg"
         justifyContent="center"
         alignItems="center"
       >
         <Avatar
           size="2xl"
-          marginTop="-17rem"
+          marginTop="-15rem"
           src={url || user?.avatar}
           _hover={{
             opacity: 0.4,
@@ -73,10 +72,14 @@ const Page = () => {
           style={{ display: "none" }}
           onChange={upload}
         />
-        <Box>
-          <Heading>{user?.firstName}</Heading>
-          <Text>"{user?.bio}"</Text>
-        </Box>
+        <Flex justifyContent="center" flexDirection="column">
+          <Heading textAlign="center">
+            {user?.firstName} {user?.lastName}
+          </Heading>
+          <Text mt=".5rem" textAlign="center" fontStyle="italic">
+            "{user?.bio}"
+          </Text>
+        </Flex>
       </Flex>
     </Flex>
   )
