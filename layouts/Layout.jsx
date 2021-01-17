@@ -77,7 +77,7 @@ const Layout = ({ children }) => {
                     <Button
                       // size="md"
                       leftIcon={<BsNewspaper />}
-                      mr={25}
+                      mr={[7, 14]}
                       variant={router.pathname === "/" ? "solid" : "ghost"}
                     >
                       Home
@@ -90,7 +90,7 @@ const Layout = ({ children }) => {
                   <Tooltip label="Job Positions" fontSize="md">
                     <Button
                       leftIcon={<BsFillPeopleFill />}
-                      mr={25}
+                      mr={[7, 14]}
                       variant={router.pathname === "/jobs" ? "solid" : "ghost"}
                     >
                       Jobs

@@ -1,6 +1,7 @@
-import { Box, Flex, Heading, Spinner } from "@chakra-ui/react"
+import { Box, Divider, Flex, Heading, Spinner } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { Sidebar } from "../components/Sidebar"
+import firebase from "../firebase"
 import { useUser } from "../utils/auth/useUser"
 
 const Positions = () => {
@@ -50,6 +51,7 @@ const Positions = () => {
         <Heading size="3xl" p="1rem" position="sticky">
           Jobs
         </Heading>
+        <Divider />
         {jobs.map((v) => (
           <>
             <Box key={v} m="1rem" p="1rem">
