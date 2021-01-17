@@ -199,6 +199,23 @@ const RegisterForm = () => {
           {errors.firstName && "first name is required"}
         </FormErrorMessage>
       </FormControl>
+      <FormControl isInvalid={errors.middleName}>
+        <Input
+          ref={register({ required: true })}
+          placeholder="middle name"
+          name="middleName"
+          size="lg"
+          w="100%"
+          my={2}
+          padding="10px"
+          variant="filled"
+          bg={bg}
+          rounded="lg"
+        />
+        <FormErrorMessage>
+          {errors.middleName && "middle name is required"}
+        </FormErrorMessage>
+      </FormControl>
       <FormControl isInvalid={errors.lastName}>
         <Input
           ref={register({ required: true })}

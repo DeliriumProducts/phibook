@@ -6,7 +6,6 @@ import {
   Heading,
   Input,
   Spinner,
-  Text,
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react"
@@ -22,6 +21,7 @@ const Page = () => {
   const [url, setURL] = React.useState("")
   const [phone, setPhone] = React.useState("")
   const [bio, setBio] = React.useState("")
+  const [job, setJob] = React.useState("")
   const [isLoading, setIsLoading] = React.useState(false)
 
   const onClick = async () => {
@@ -45,7 +45,8 @@ const Page = () => {
   React.useEffect(() => {
     setBio(user?.bio)
     setPhone(user?.phone)
-  }, [user?.bio, user?.phone])
+    setJob(user?.workPosition)
+  }, [user?.bio, user?.phone, user?.workPosition])
 
   const upload = async (e) => {
     e.preventDefault()
@@ -116,9 +117,13 @@ const Page = () => {
             <Heading mt="1rem" size="md">
               Job
             </Heading>
-            <Text fontStyle="italic" mt=".5rem">
-              {user?.workPosition}
-            </Text>
+            <Input
+              variant="flushed"
+              value={job}
+              fontStyle="italic"
+              mt=".5rem"
+              onChange={(e) => setJob(e.currentTarget.value)}
+            />
             <Heading mt="1rem" size="md">
               Bio
             </Heading>
