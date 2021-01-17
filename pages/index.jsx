@@ -42,7 +42,7 @@ const Index = () => {
         snapshot.forEach((v) => {
           n.push(v.val())
         })
-        setNews(n)
+        setNews(n.reverse())
       })
   }, [])
 
@@ -78,7 +78,7 @@ const Index = () => {
         </Heading>
         <Divider />
         {/* <Flex align="center" justify="center" w="60%"> */}
-        {news.reverse().map((v) => (
+        {news.map((v) => (
           <React.Fragment key={v.title}>
             <Flex alignItems="center" justifyContent="space-around" p="1rem">
               <Box key={v} m="0.5rem" p="1rem" flex={2}>
