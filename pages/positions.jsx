@@ -1,13 +1,12 @@
 import {
   Box,
-  Button,
   Flex,
   Heading,
   Spinner,
   useColorModeValue,
 } from "@chakra-ui/react"
 import { useRouter } from "next/router"
-import { BiUserCircle } from "react-icons/bi"
+import { Sidebar } from "../components/Sidebar"
 import { useUser } from "../utils/auth/useUser"
 
 const Positions = () => {
@@ -33,19 +32,10 @@ const Positions = () => {
   if (!user && !loading) {
     router.push("/auth")
   }
+
   return (
     <Flex w="100%" minHeight="100%" flexGrow={1}>
-      <Flex
-        flex={1}
-        minHeight="100%"
-        bg={sideBarBg}
-        p=".3rem"
-        display={{ base: "none", md: "flex" }}
-      >
-        <Button size="lg" variant="ghost" leftIcon={<BiUserCircle />}>
-          {user?.firstName} {user?.lastName}
-        </Button>
-      </Flex>
+      <Sidebar user={user} />
       <Flex flex={3} minHeight="100%" flexDirection="column">
         <Heading size="3xl" p="1rem" position="sticky">
           Positions
