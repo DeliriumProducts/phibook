@@ -76,6 +76,7 @@ const Page = () => {
       flexGrow={1}
       justifyContent="center"
       alignItems="center"
+      mt={"5rem"}
     >
       {loading ? (
         <Spinner />
