@@ -4,11 +4,14 @@ import {
   Divider,
   Flex,
   Heading,
+  IconButton,
   Spinner,
   Text,
+  useToast,
 } from "@chakra-ui/react"
 import axios from "axios"
 import { useRouter } from "next/router"
+import { BsTrash } from "react-icons/bs"
 import { Sidebar } from "../components/Sidebar"
 import firebase from "../firebase"
 import { useUser } from "../utils/auth/useUser"
@@ -26,8 +29,9 @@ const fetcher = (url, token) =>
 //   )
 const Index = () => {
   const { user, loading } = useUser()
-
+  const [isLoading, setIsLoading] = React.useState(false)
   const router = useRouter()
+  const toast = useToast()
 
   const [news, setNews] = React.useState([])
   React.useEffect(() => {
@@ -40,7 +44,7 @@ const Index = () => {
         }
         const n = []
         snapshot.forEach((v) => {
-          n.push(v.val())
+          n.push({ ...v.val(), id: v.key })
         })
         setNews(n.reverse())
       })
@@ -89,6 +93,24 @@ const Index = () => {
                   <Text ml="1rem">{`${v?.publisher}`}</Text>
                 </Flex>
               </Box>
+              {user?.admin && (
+                <IconButton
+                  icon={<BsTrash />}
+                  colorScheme="red"
+                  isLoading={isLoading}
+                  onClick={async () => {
+                    setIsLoading(true)
+                    await firebase.database().ref(`news/${v.id}`).remove()
+                    setIsLoading(false)
+                    toast({
+                      title: "Successfully deleted article!",
+                      status: "success",
+                    })
+                  }}
+                  rounded="xl"
+                  mr="1.5rem"
+                />
+              )}
             </Flex>
             <Divider />
           </React.Fragment>
