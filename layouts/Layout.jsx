@@ -168,7 +168,7 @@ const Layout = ({ children }) => {
                     <>
                       <MenuItem onClick={() => router.push("/new-article")}>
                         <Box as={BsPencilSquare} mr="12px" />
-                        <span>New article</span>
+                        <span>New article / event</span>
                       </MenuItem>
                       <MenuItem onClick={() => router.push("/new-job")}>
                         <Box as={BsPersonCheck} mr="12px" />
