@@ -5,6 +5,7 @@ import {
   Button,
   Divider,
   Flex,
+  Heading,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react"
@@ -42,6 +43,10 @@ const Sidebar = ({ user }) => {
       flexDirection="column"
       display={{ base: "none", md: "flex" }}
     >
+      <Heading size="md" my="1rem">
+        My Profile
+      </Heading>
+      <Divider mb="1rem" />
       <NextLink href="/my-profile">
         <Button
           size="lg"
@@ -51,6 +56,9 @@ const Sidebar = ({ user }) => {
           {user?.firstName} {user?.lastName}
         </Button>
       </NextLink>
+      <Heading size="md" my="1rem">
+        Colleagues
+      </Heading>
       <Divider />
       {users
         .filter((v) => v.id != user.id)
