@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Box,
   Flex,
   Heading,
   Text,
@@ -54,18 +55,20 @@ const Page = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar
-          size="2xl"
-          marginTop="-15rem"
-          src={url || user?.avatar}
-          _hover={{
-            opacity: 0.4,
-            transition: "opacity ease-in-out 0.2s",
-          }}
-          onClick={() => {
-            imageRef.current.click()
-          }}
-        />
+        <Box>
+          <Avatar
+            size="2xl"
+            marginTop="-8rem"
+            src={url || user?.avatar}
+            _hover={{
+              opacity: 0.4,
+              transition: "opacity ease-in-out 0.2s",
+            }}
+            onClick={() => {
+              imageRef.current.click()
+            }}
+          />
+        </Box>
         <input
           type="file"
           ref={imageRef}
@@ -76,9 +79,19 @@ const Page = () => {
           <Heading textAlign="center">
             {user?.firstName} {user?.lastName}
           </Heading>
-          <Text mt=".5rem" textAlign="center" fontStyle="italic">
-            "{user?.bio}"
-          </Text>
+          {user?.bio && (
+            <Text mt=".5rem" textAlign="center" fontStyle="italic">
+              "{user?.bio}"
+            </Text>
+          )}
+          <Heading mt="1rem" size="md">
+            Job
+          </Heading>
+          <Text fontSize="sm">{user?.workPosition}</Text>
+          <Heading mt="1rem" size="md">
+            Phone
+          </Heading>
+          <Text fontSize="sm">{user?.phone}</Text>
         </Flex>
       </Flex>
     </Flex>

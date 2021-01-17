@@ -57,7 +57,6 @@ const LoginForm = () => {
           title: err.toString(),
           status: "error",
         })
-        reset()
       })
       .finally(() => setLoading(false))
   }
