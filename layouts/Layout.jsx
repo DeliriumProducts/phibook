@@ -24,12 +24,12 @@ import { useRouter } from "next/router"
 import { AiFillCaretDown } from "react-icons/ai"
 import { BiLogOut } from "react-icons/bi"
 import {
+  BsBuilding,
   BsFillChatFill,
   BsFillPeopleFill,
   BsNewspaper,
   BsPencilSquare,
   BsPersonCheck,
-  BsBuilding,
 } from "react-icons/bs"
 import { FaRegListAlt } from "react-icons/fa"
 import { useUser } from "../utils/auth/useUser"
@@ -114,14 +114,16 @@ const Layout = ({ children }) => {
                   </Tooltip>
                 </LinkBox>
               </NextLink>
-              <NextLink href="/chat" passHref>
+              <NextLink href="/colleagues" passHref>
                 <LinkBox>
-                  <Tooltip label="Chat" fontSize="md">
+                  <Tooltip label="Colleagues" fontSize="md">
                     <Button
                       leftIcon={<BsFillChatFill />}
-                      variant={router.pathname === "/chat" ? "solid" : "ghost"}
+                      variant={
+                        router.pathname === "/colleagues" ? "solid" : "ghost"
+                      }
                     >
-                      Chat
+                      Colleagues
                     </Button>
                   </Tooltip>
                 </LinkBox>

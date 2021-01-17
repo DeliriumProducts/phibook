@@ -1,28 +1,28 @@
 import {
-  Flex,
-  Input,
   Box,
-  FormLabel,
+  Button,
+  Checkbox,
+  Divider,
+  Flex,
   FormControl,
   FormErrorMessage,
-  Divider,
+  FormLabel,
   Heading,
-  Button,
-  Tag,
-  useToast,
-  Spinner,
-  Checkbox,
   HStack,
+  Input,
+  Spinner,
+  Tag,
   Text,
   Textarea,
+  useToast,
 } from "@chakra-ui/react"
 import "firebase/auth"
+import { useRouter } from "next/router"
 import React from "react"
 import { useForm } from "react-hook-form"
 import { Sidebar } from "../components/Sidebar"
-import { useUser } from "../utils/auth/useUser"
 import firebase from "../firebase"
-import { useRouter } from "next/router"
+import { useUser } from "../utils/auth/useUser"
 
 export default function Admin() {
   const { user, loading } = useUser()
@@ -230,9 +230,6 @@ export default function Admin() {
                 )}
                 <Text>{body}</Text>
               </Box>
-              <Button size="lg" w={["100%", "6rem"]}>
-                Apply
-              </Button>
             </Flex>
             <Divider />
           </React.Fragment>
