@@ -1,16 +1,9 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Spinner,
-  useColorModeValue,
-} from "@chakra-ui/react"
+import { Box, Flex, Heading, Spinner } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { Sidebar } from "../components/Sidebar"
 import { useUser } from "../utils/auth/useUser"
 
 const Positions = () => {
-  const sideBarBg = useColorModeValue("white", "gray.800")
   const { user, loading } = useUser()
 
   const router = useRouter()
@@ -38,7 +31,7 @@ const Positions = () => {
       <Sidebar user={user} />
       <Flex flex={3} minHeight="100%" flexDirection="column">
         <Heading size="3xl" p="1rem" position="sticky">
-          Positions
+          Jobs
         </Heading>
         {[...Array(1000).keys()].map((v) => (
           <Box w="5rem" h="5rem" bg="pink.50" key={v} m="1rem">

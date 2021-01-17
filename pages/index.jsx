@@ -1,7 +1,7 @@
 import { Box, Divider, Flex, Heading, Spinner, Text } from "@chakra-ui/react"
 import axios from "axios"
 import { useRouter } from "next/router"
-import { Sidebar } from '../components/Sidebar'
+import { Sidebar } from "../components/Sidebar"
 import firebase from "../firebase"
 import { useUser } from "../utils/auth/useUser"
 
@@ -17,7 +17,7 @@ const fetcher = (url, token) =>
 //     fetcher
 //   )
 const Index = () => {
-  const { user, logout, loading } = useUser()
+  const { user, loading } = useUser()
 
   const router = useRouter()
 

@@ -1,13 +1,13 @@
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import {
-  Button, Flex,
+  Button,
+  Flex,
   Heading,
   IconButton,
   LinkBox,
   Tooltip,
   useColorMode,
-
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react"
 import { transparentize } from "@chakra-ui/theme-tools"
 import styled from "@emotion/styled"
@@ -79,7 +79,10 @@ const Layout = ({ children }) => {
                       leftIcon={<BsNewspaper />}
                       mr={25}
                       variant={router.pathname === "/" ? "solid" : "ghost"}
-                    > Home </Button>
+                    >
+                      {" "}
+                      Home{" "}
+                    </Button>
                   </Tooltip>
                 </LinkBox>
               </NextLink>
@@ -89,10 +92,11 @@ const Layout = ({ children }) => {
                     <Button
                       leftIcon={<BsFillPeopleFill />}
                       mr={25}
-                      variant={
-                        router.pathname === "/positions" ? "solid" : "ghost"
-                      }
-                    > Jobs </Button> 
+                      variant={router.pathname === "/jobs" ? "solid" : "ghost"}
+                    >
+                      {" "}
+                      Jobs{" "}
+                    </Button>
                   </Tooltip>
                 </LinkBox>
               </NextLink>
@@ -100,9 +104,12 @@ const Layout = ({ children }) => {
                 <LinkBox>
                   <Tooltip label="Chat" fontSize="md">
                     <Button
-                      leftIcon={<BsFillChatFill/>}
+                      leftIcon={<BsFillChatFill />}
                       variant={router.pathname === "/chat" ? "solid" : "ghost"}
-                    > Chat </Button> 
+                    >
+                      {" "}
+                      Chat{" "}
+                    </Button>
                   </Tooltip>
                 </LinkBox>
               </NextLink>

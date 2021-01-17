@@ -7,7 +7,7 @@ import {
   Input,
   Text,
   useColorModeValue,
-  useToast
+  useToast,
 } from "@chakra-ui/react"
 import "firebase/auth"
 import { useRouter } from "next/router"
@@ -65,7 +65,7 @@ const LoginForm = () => {
   return (
     <Flex
       as="form"
-      w={["100%","30rem"]}
+      w={["100%", "30rem"]}
       justify="center"
       align="center"
       flexDir="column"
@@ -157,7 +157,7 @@ const RegisterForm = () => {
   return (
     <Flex
       as="form"
-      w={["100%","30rem"]}
+      w={["100%", "30rem"]}
       justify="center"
       align="center"
       flexDir="column"
@@ -236,7 +236,7 @@ const RegisterForm = () => {
         </FormErrorMessage>
       </FormControl>
       <Button
-        rightIcon={<AiOutlineRight/>}
+        rightIcon={<AiOutlineRight />}
         type="submit"
         bg={bg}
         my={2}
@@ -262,7 +262,6 @@ const FirebaseAuth = () => {
 
   return (
     <Flex
-      // w="100%"
       minHeight="100%"
       flexGrow={1}
       justify="center"
