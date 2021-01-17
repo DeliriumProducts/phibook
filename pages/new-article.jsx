@@ -160,26 +160,6 @@ export default function Admin() {
             </Button>
           </Box>
         </Flex>
-        <Heading size="lg" p="1rem">
-          Preview
-        </Heading>
-        <React.Fragment>
-          {title === "" && body === "" ? null : (
-            <React.Fragment>
-              <Flex alignItems="center" justifyContent="space-around" p="1rem">
-                <Box m="0.5rem" p="1rem" flex={2}>
-                  <Heading size="md">{title}</Heading>
-                  <Text mt=".5rem">{body}</Text>
-                  <Flex mt="1rem" flexDirection="row" alignItems="center">
-                    <Avatar size="md" src={user?.avatar} />
-                    <Text ml="1rem">{`${user?.firstName} ${user?.lastName}`}</Text>
-                  </Flex>
-                </Box>
-              </Flex>
-              <Divider />
-            </React.Fragment>
-          )}
-        </React.Fragment>
       </Flex>
     </Flex>
   )

@@ -194,46 +194,6 @@ export default function Admin() {
             </Button>
           </Box>
         </Flex>
-        <Heading size="lg" p="1rem">
-          Preview
-        </Heading>
-        {title === "" && body === "" && salary === 0 ? (
-          <></>
-        ) : (
-          <React.Fragment>
-            <Flex
-              alignItems="center"
-              justifyContent="space-between"
-              p="1rem"
-              flexWrap="wrap"
-            >
-              <Box p="1rem">
-                <Heading size="lg" mb=".5rem">
-                  {title}
-                </Heading>
-                <Tag colorScheme="green" mb=".5rem">
-                  {`$${salary}`}
-                </Tag>
-                {isRemote ? (
-                  <Tag colorScheme="purple" mb=".5rem" ml={2}>
-                    Remote
-                  </Tag>
-                ) : (
-                  <Tag colorScheme="yellow" mb=".5rem" ml={2}>
-                    Local
-                  </Tag>
-                )}
-                {isFlexible && (
-                  <Tag colorScheme="blue" mb=".5rem" ml={2}>
-                    Flexible hours
-                  </Tag>
-                )}
-                <Text>{body}</Text>
-              </Box>
-            </Flex>
-            <Divider />
-          </React.Fragment>
-        )}
       </Flex>
     </Flex>
   )
