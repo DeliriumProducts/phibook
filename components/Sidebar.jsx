@@ -1,9 +1,11 @@
 import {
   Avatar,
   AvatarBadge,
+  Box,
   Button,
   Divider,
   Flex,
+  Text,
   useColorModeValue,
 } from "@chakra-ui/react"
 import firebase from "firebase"
@@ -54,21 +56,23 @@ const Sidebar = ({ user }) => {
         .filter((v) => v.id != user.id)
         .map((v) => (
           <>
-            <Button
-              key={v.id}
-              size="lg"
-              variant=""
-              leftIcon={
+            <Flex
+              alignItems="center"
+              justifyContent="space-between"
+              my="0.5rem"
+            >
+              <Text as="span">
+                {v.firstName} {v.lastName}
+              </Text>
+              <Box mr="12px">
                 <Avatar src={v.avatar} size="sm">
                   <AvatarBadge
                     boxSize="1.25em"
                     bg={Math.random() > 0.5 ? "red.500" : "green.500"}
                   />
                 </Avatar>
-              }
-            >
-              {v.firstName} {v.lastName}
-            </Button>
+              </Box>
+            </Flex>
           </>
         ))}
     </Flex>

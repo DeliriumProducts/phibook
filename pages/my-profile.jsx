@@ -1,4 +1,11 @@
-import { Avatar, Box, Flex, Heading, useColorModeValue } from "@chakra-ui/react"
+import {
+  Avatar,
+  Box,
+  Flex,
+  Heading,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react"
 import firebase from "firebase"
 import { useUser } from "../utils/auth/useUser"
 
@@ -68,6 +75,7 @@ const Page = () => {
         />
         <Box>
           <Heading>{user?.firstName}</Heading>
+          <Text>"{user?.bio}"</Text>
         </Box>
       </Flex>
     </Flex>

@@ -1,4 +1,12 @@
-import { Box, Divider, Flex, Heading, Spinner, Text } from "@chakra-ui/react"
+import {
+  Avatar,
+  Box,
+  Divider,
+  Flex,
+  Heading,
+  Spinner,
+  Text,
+} from "@chakra-ui/react"
 import axios from "axios"
 import { useRouter } from "next/router"
 import { Sidebar } from "../components/Sidebar"
@@ -71,10 +79,13 @@ const Index = () => {
         <Divider />
         {news.map((v) => (
           <>
-            <Box key={v} m="1rem" p="1rem">
-              <Heading size="lg">{v.title}</Heading>
-              <Text>{v.content}</Text>
-            </Box>
+            <Flex alignItems="center" justifyContent="space-around" p="1rem">
+              <Box key={v} m="0.5rem" p="1rem" flex={2}>
+                <Heading size="lg">{v.title}</Heading>
+                <Text>{v.content}</Text>
+              </Box>
+              <Avatar size="sm" src={v.publisherAvatar} />
+            </Flex>
             <Divider />
           </>
         ))}
