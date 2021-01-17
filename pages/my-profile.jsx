@@ -27,14 +27,12 @@ const Page = () => {
 
   const onClick = async () => {
     setIsLoading(true)
-    await Promise.all([
-      firebase.database().ref(`users/${user?.id}`).update({
-        bio: bio,
-      }),
-      firebase.database().ref(`users/${user?.id}`).update({
-        phone: phone,
-      }),
-    ])
+    console.log(bio)
+    await firebase.database().ref(`users/${user?.id}`).update({
+      job,
+      bio,
+      phone,
+    })
     setIsLoading(false)
 
     toast({
