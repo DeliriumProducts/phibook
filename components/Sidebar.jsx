@@ -59,7 +59,7 @@ const Sidebar = ({ user }) => {
       <Heading size="md" my="1rem">
         Colleagues
       </Heading>
-      <Divider />
+      <Divider mb="1rem" />
       {users
         .filter((v) => v.id != user.id)
         .map((v) => (
