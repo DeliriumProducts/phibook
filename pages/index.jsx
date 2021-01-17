@@ -1,17 +1,7 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  Spinner,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react"
+import { Box, Divider, Flex, Heading, Spinner, Text } from "@chakra-ui/react"
 import axios from "axios"
-import NextLink from "next/link"
 import { useRouter } from "next/router"
-import { BiUserCircle } from "react-icons/bi"
+import { Sidebar } from "../components/Sidebar"
 import firebase from "../firebase"
 import { useUser } from "../utils/auth/useUser"
 
@@ -27,13 +17,11 @@ const fetcher = (url, token) =>
 //     fetcher
 //   )
 const Index = () => {
-  const { user, logout, loading } = useUser()
+  const { user, loading } = useUser()
 
   const router = useRouter()
-  const sideBarBg = useColorModeValue("white", "gray.800")
 
   const [news, setNews] = React.useState([])
-
   React.useEffect(() => {
     return firebase
       .database()
@@ -70,21 +58,9 @@ const Index = () => {
 
   return (
     <Flex w="100%" minHeight="100%" flexGrow={1}>
-      <Flex
-        flex={1}
-        minHeight="100%"
-        bg={sideBarBg}
-        p=".3rem"
-        display={{ base: "none", md: "flex" }}
-      >
-        <NextLink href="/my-profile">
-          <Button size="lg" variant="ghost" leftIcon={<BiUserCircle />}>
-            {user.firstName} {user.lastName}
-          </Button>
-        </NextLink>
-      </Flex>
+      <Sidebar user={user} />
       <Flex flex={3} minHeight="100%" flexDirection="column">
-        <Heading size="4xl" p="1rem" position="sticky">
+        <Heading size="4xl" p="1rem">
           News
         </Heading>
         {<Divider />}
@@ -94,7 +70,7 @@ const Index = () => {
               <Heading size="lg">{v.title}</Heading>
               <Text>{v.content}</Text>
             </Box>
-            {<Divider />}
+            <Divider />
           </>
         ))}
       </Flex>

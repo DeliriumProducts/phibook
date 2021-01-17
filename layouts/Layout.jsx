@@ -82,27 +82,23 @@ const Layout = ({ children }) => {
                     <Button
                       // size="md"
                       leftIcon={<BsNewspaper />}
-                      mr={25}
+                      mr={[7, 14]}
                       variant={router.pathname === "/" ? "solid" : "ghost"}
                     >
-                      {" "}
-                      Home{" "}
+                      Home
                     </Button>
                   </Tooltip>
                 </LinkBox>
               </NextLink>
-              <NextLink href="/positions" passHref>
+              <NextLink href="/jobs" passHref>
                 <LinkBox>
                   <Tooltip label="Job Positions" fontSize="md">
                     <Button
                       leftIcon={<BsFillPeopleFill />}
-                      mr={25}
-                      variant={
-                        router.pathname === "/positions" ? "solid" : "ghost"
-                      }
+                      mr={[7, 14]}
+                      variant={router.pathname === "/jobs" ? "solid" : "ghost"}
                     >
-                      {" "}
-                      Jobs{" "}
+                      Jobs
                     </Button>
                   </Tooltip>
                 </LinkBox>
@@ -114,8 +110,7 @@ const Layout = ({ children }) => {
                       leftIcon={<BsFillChatFill />}
                       variant={router.pathname === "/chat" ? "solid" : "ghost"}
                     >
-                      {" "}
-                      Chat{" "}
+                      Chat
                     </Button>
                   </Tooltip>
                 </LinkBox>
