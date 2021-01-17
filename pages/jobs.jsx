@@ -99,6 +99,12 @@ const Positions = () => {
               </Box>
               <Button
                 size="lg"
+                disabled={
+                  user?.applications &&
+                  Object.keys(user?.applications)
+                    .map((k) => user?.applications[k].id)
+                    .includes(v.id)
+                }
                 w={["100%", "6rem"]}
                 onClick={async () => {
                   await firebase
