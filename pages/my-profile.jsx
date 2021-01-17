@@ -1,12 +1,13 @@
 import {
   Avatar,
   Box,
-  Editable,
-  EditableInput,
-  EditablePreview,
+  Button,
   Flex,
   Heading,
+  Input,
+  Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react"
 import firebase from "firebase"
 import { FaFacebook, FaGithub, FaTwitter } from "react-icons/fa"
@@ -14,9 +15,36 @@ import { useUser } from "../utils/auth/useUser"
 
 const Page = () => {
   const { user, logout, loading } = useUser()
+  const toast = useToast()
   const bg = useColorModeValue("white", "gray.800")
   const imageRef = React.useRef()
   const [url, setURL] = React.useState("")
+  const [phone, setPhone] = React.useState("")
+  const [bio, setBio] = React.useState("")
+  const [isLoading, setIsLoading] = React.useState(false)
+
+  const onClick = async () => {
+    setIsLoading(true)
+    await Promise.all([
+      firebase.database().ref(`users/${user?.id}`).update({
+        bio: bio,
+      }),
+      firebase.database().ref(`users/${user?.id}`).update({
+        phone: phone,
+      }),
+    ])
+    setIsLoading(false)
+
+    toast({
+      title: "Successfully updated profile!",
+      status: "success",
+    })
+  }
+
+  React.useEffect(() => {
+    setBio(user?.bio)
+    setPhone(user?.phone)
+  }, [user?.bio, user?.phone])
 
   const upload = async (e) => {
     e.preventDefault()
@@ -72,7 +100,7 @@ const Page = () => {
             }}
           />
         </Box>
-        <input
+        <Input
           type="file"
           ref={imageRef}
           style={{ display: "none" }}
@@ -82,45 +110,32 @@ const Page = () => {
           <Heading textAlign="center">
             {user?.firstName} {user?.lastName}
           </Heading>
-          <Editable
-            defaultValue={user?.bio}
-            onSubmit={(bio) => {
-              firebase.database().ref(`users/${user?.id}`).update({
-                bio: bio,
-              })
-            }}
-          >
-            <EditablePreview fontStyle="italic" textAlign="center" mt=".5rem" />
-            <EditableInput mt=".5rem" />
-          </Editable>
           <Heading mt="1rem" size="md">
             Job
           </Heading>
-          <Editable
-            defaultValue={user?.workPosition}
-            onSubmit={(workPosition) => {
-              firebase.database().ref(`users/${user?.id}`).update({
-                workPosition: workPosition,
-              })
-            }}
-          >
-            <EditablePreview fontStyle="italic" textAlign="center" mt=".5rem" />
-            <EditableInput mt=".5rem" />
-          </Editable>
+          <Text fontStyle="italic" mt=".5rem">
+            {user?.workPosition}
+          </Text>
+          <Heading mt="1rem" size="md">
+            Bio
+          </Heading>
+          <Input
+            variant="flushed"
+            value={bio}
+            fontStyle="italic"
+            mt=".5rem"
+            onChange={(e) => setBio(e.currentTarget.value)}
+          />
           <Heading mt="1rem" size="md">
             Phone
           </Heading>
-          <Editable
-            defaultValue={user?.phone}
-            onSubmit={(phone) => {
-              firebase.database().ref(`users/${user?.id}`).update({
-                phone: phone,
-              })
-            }}
-          >
-            <EditablePreview fontStyle="italic" textAlign="center" mt=".5rem" />
-            <EditableInput mt=".5rem" />
-          </Editable>
+          <Input
+            value={phone}
+            fontStyle="italic"
+            mt=".5rem"
+            variant="flushed"
+            onChange={(e) => setPhone(e.currentTarget.value)}
+          />
           <Flex mt="1rem" justifyContent="space-evenly">
             <Box
               as={FaTwitter}
@@ -150,6 +165,9 @@ const Page = () => {
               boxSize="3rem"
             />
           </Flex>
+          <Button mt="2rem" onClick={onClick} isLoading={isLoading}>
+            Save
+          </Button>
         </Flex>
       </Flex>
     </Flex>
