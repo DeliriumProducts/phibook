@@ -2,7 +2,9 @@ import {
   Avatar,
   Box,
   Flex,
+  FormLabel,
   Heading,
+  Input,
   Spinner,
   Text,
   useColorModeValue,
@@ -14,6 +16,7 @@ const Colleagues = () => {
   const { user, loading } = useUser()
   const [users, setUsers] = React.useState([])
   const bg = useColorModeValue("white", "gray.800")
+  const [filter, setFilter] = React.useState("")
 
   React.useEffect(() => {
     return firebase
@@ -48,71 +51,94 @@ const Colleagues = () => {
     router.push("/auth")
   }
   return (
-    <Flex w="100%" minHeight="100%" flexGrow={1} flexDir="column" mt="5rem">
-      <Flex flexDir="column" justifyContent="center" alignItems="center">
-        {users.map(
-          ({
-            firstName,
-            lastName,
-            middleName,
-            email,
-            phone,
-            workPosition: job,
-            bio,
-            avatar,
-            department,
-          }) => (
-            <Flex
-              bg={bg}
-              m="2rem"
-              flexDir="column"
-              w={["100%", "30rem"]}
-              p="4rem"
-              borderRadius="lg"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Box>
-                <Avatar size="2xl" marginTop="-8rem" src={avatar} />
-              </Box>
-              <Flex justifyContent="center" flexDirection="column">
-                <Heading textAlign="center">
-                  {firstName} {middleName} {lastName}
-                </Heading>
-                <Heading mt="1rem" size="md">
-                  Job
-                </Heading>
-                <Text fontStyle="italic" mt=".5rem">
-                  {job}
-                </Text>
-                <Heading mt="1rem" size="md">
-                  Bio
-                </Heading>
-                <Text fontStyle="italic" mt=".5rem">
-                  {bio}
-                </Text>
-                <Heading mt="1rem" size="md">
-                  Phone
-                </Heading>
-                <Text fontStyle="italic" mt=".5rem">
-                  {phone}
-                </Text>
-                <Heading mt="1rem" size="md">
-                  Department
-                </Heading>
-                <Text fontStyle="italic" mt=".5rem">
-                  {department}
-                </Text>
-                <Heading mt="1rem" size="md">
-                  Email
-                </Heading>
-                <Text fontStyle="italic" mt=".5rem">
-                  {email}
-                </Text>
+    <Flex flexDir="column" justifyContent="center" alignItems="center">
+      <FormLabel mt="2rem">Search for colleagues</FormLabel>
+      <Input
+        variant="filled"
+        placeholder="George Ivanov, IT, 0899, etc..."
+        w={["100%", "30rem"]}
+        bg={bg}
+        value={filter}
+        onChange={(e) => setFilter(e.currentTarget.value)}
+      />
+      <Flex w="100%" minHeight="100%" flexGrow={1} flexDir="column" mt="5rem">
+        <Flex flexDir="column" justifyContent="center" alignItems="center">
+          {users.map((user) => {
+            const {
+              firstName,
+              lastName,
+              middleName,
+              email,
+              phone,
+              workPosition: job,
+              bio,
+              avatar,
+              department,
+            } = user
+
+            console.log()
+            if (
+              !JSON.stringify(user)
+                .toLowerCase()
+                .includes(filter.toLocaleLowerCase())
+            ) {
+              return null
+            }
+
+            return (
+              <Flex
+                key={user.id}
+                bg={bg}
+                m="2rem"
+                flexDir="column"
+                w={["100%", "30rem"]}
+                p="4rem"
+                borderRadius="lg"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Box>
+                  <Avatar size="2xl" marginTop="-8rem" src={avatar} />
+                </Box>
+                <Flex justifyContent="center" flexDirection="column">
+                  <Heading textAlign="center">
+                    {firstName} {middleName} {lastName}
+                  </Heading>
+                  <Heading mt="1rem" size="md">
+                    Job
+                  </Heading>
+                  <Text fontStyle="italic" mt=".5rem">
+                    {job}
+                  </Text>
+                  <Heading mt="1rem" size="md">
+                    Bio
+                  </Heading>
+                  <Text fontStyle="italic" mt=".5rem">
+                    {bio}
+                  </Text>
+                  <Heading mt="1rem" size="md">
+                    Phone
+                  </Heading>
+                  <Text fontStyle="italic" mt=".5rem">
+                    {phone}
+                  </Text>
+                  <Heading mt="1rem" size="md">
+                    Department
+                  </Heading>
+                  <Text fontStyle="italic" mt=".5rem">
+                    {department}
+                  </Text>
+                  <Heading mt="1rem" size="md">
+                    Email
+                  </Heading>
+                  <Text fontStyle="italic" mt=".5rem">
+                    {email}
+                  </Text>
+                </Flex>
               </Flex>
-            </Flex>
-          )
-        )}
+            )
+          })}
+        </Flex>
       </Flex>
     </Flex>
   )
