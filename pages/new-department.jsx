@@ -8,6 +8,7 @@ import {
   Heading,
   Input,
   Spinner,
+  Tag,
   useToast,
 } from "@chakra-ui/react"
 import "firebase/auth"
@@ -22,6 +23,23 @@ export default function Admin() {
   const { user, loading } = useUser()
   const router = useRouter()
   const [department, setDepartment] = React.useState("")
+  const [departments, setDepartments] = React.useState([])
+
+  React.useEffect(() => {
+    return firebase
+      .database()
+      .ref("departments")
+      .on("value", (snapshot) => {
+        if (!snapshot) {
+          return
+        }
+        const n = []
+        snapshot.forEach((v) => {
+          n.push({ ...v.val(), id: v.key })
+        })
+        setDepartments(n)
+      })
+  }, [])
 
   const [formLoading, setFormLoading] = React.useState(false)
   const { register, handleSubmit, errors, reset } = useForm({
@@ -97,7 +115,7 @@ export default function Admin() {
             <FormControl isInvalid={errors.depName}>
               <FormLabel>Department name</FormLabel>
               <Input
-                mb={5}
+                mb={3}
                 name="depName"
                 rounded={13}
                 onChange={(e) => setDepartment(e.currentTarget.value)}
@@ -108,9 +126,15 @@ export default function Admin() {
                 {errors.depName && "Name is required"}
               </FormErrorMessage>
             </FormControl>
+            <Box mb={3}>
+              {departments.map((d) => (
+                <Tag m={1} colorScheme="purple">
+                  {d.name}
+                </Tag>
+              ))}
+            </Box>
             <Button
               type="submit"
-              my={2}
               isLoading={loading}
               w="100%"
               size="lg"
