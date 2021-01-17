@@ -47,7 +47,12 @@ const Positions = () => {
   return (
     <Flex w="100%" minHeight="100%" flexGrow={1}>
       <Sidebar user={user} />
-      <Flex flex={3} minHeight="100%" flexDirection="column">
+      <Flex
+        flex={3}
+        minHeight="100%"
+        flexDirection="column"
+        ml={{ sm: 0, md: 64 }}
+      >
         <Heading size="3xl" p="1rem" position="sticky">
           Jobs
         </Heading>
