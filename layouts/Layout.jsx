@@ -85,7 +85,7 @@ const Layout = ({ children }) => {
                   </Tooltip>
                 </LinkBox>
               </NextLink>
-              <NextLink href="/positions" passHref>
+              <NextLink href="/jobs" passHref>
                 <LinkBox>
                   <Tooltip label="Job Positions" fontSize="md">
                     <Button
