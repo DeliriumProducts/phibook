@@ -82,8 +82,6 @@ const Page = () => {
       ) : (
         <Flex
           bg={bg}
-          minH="20rem"
-          minW="20rem"
           flexDir="column"
           p="4rem"
           borderRadius="lg"
