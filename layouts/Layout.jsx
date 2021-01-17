@@ -6,10 +6,13 @@ import {
   Heading,
   IconButton,
   LinkBox,
+  MenuGroup,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Image,
+  MenuDivider,
   Tooltip,
   useColorMode,
   useColorModeValue,
@@ -122,6 +125,27 @@ const Layout = ({ children }) => {
                 <IconButton variant="ghost" icon={<AiFillCaretDown />} />
               </MenuButton>
               <MenuList>
+                <MenuGroup>
+                  <MenuItem
+                    onClick={() => router.push("/my-profile")}
+                    minH="48px"
+                  >
+                    <Image
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src={user.avatar}
+                      alt="User avatar"
+                      mr="12px"
+                    />
+                    <span>My Profile</span>
+                  </MenuItem>
+                  <MenuItem>My Applications</MenuItem>
+                </MenuGroup>
+                <MenuDivider />
+                <MenuGroup>
+                  <MenuItem>About</MenuItem>
+                  <MenuItem>FAQ</MenuItem>
+                </MenuGroup>
                 <MenuItem onClick={logout}>
                   <Box as={BiLogOut} mr="12px" />
                   <span>Logout</span>
