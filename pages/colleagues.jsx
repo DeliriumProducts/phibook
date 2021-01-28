@@ -68,7 +68,7 @@ const Colleagues = () => {
          onChange={(e) => setFilter(e.currentTarget.value)}
         />
       </Box>
-      <Flex w="100%" minHeight="100%" flexGrow={1} flexDir="row" mt="5rem" flexWrap="wrap">
+      <Flex w="100%" minHeight="100%" flexGrow={1} flexDir="row" mt="5rem" flexWrap="wrap" justifyContent="center" alignItems="center">
         <Flex flexDir="row" flexWrap="wrap" justifyContent="center" alignItems="center">
           {users.map((wholeUser) => {
             const {
