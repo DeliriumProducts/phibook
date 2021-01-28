@@ -24,11 +24,6 @@ import { useUser } from "../utils/auth/useUser"
 export default function Admin() {
   const { user, loading } = useUser()
   const router = useRouter()
-  const [title, setTitle] = React.useState("")
-  const [salary, setSalary] = React.useState(0)
-  const [body, setBody] = React.useState("")
-  const [isRemote, setIsRemote] = React.useState(true)
-  const [isFlexible, setIsFlexible] = React.useState(true)
 
   const [formLoading, setFormLoading] = React.useState(false)
   const { register, handleSubmit, errors, reset } = useForm({
@@ -75,9 +70,6 @@ export default function Admin() {
         })
 
         reset()
-        setTitle(null)
-        setBody(null)
-        setSalary(0)
       })
       .catch((err) => {
         toast({
@@ -86,9 +78,6 @@ export default function Admin() {
         })
 
         reset()
-        setTitle(null)
-        setBody(null)
-        setSalary(0)
       })
       .finally(() => setFormLoading(false))
   }
@@ -115,7 +104,6 @@ export default function Admin() {
                 mb={5}
                 name="jobTitle"
                 rounded={13}
-                onChange={(e) => setTitle(e.currentTarget.value)}
                 ref={register({ required: true })}
                 placeholder="Your job title"
               />
@@ -128,9 +116,6 @@ export default function Admin() {
               <Input
                 name="jobSalary"
                 type="number"
-                onChange={(e) => {
-                  setSalary(Number(e.currentTarget.value))
-                }}
                 mb={5}
                 placeholder="Job salary"
                 ref={register({ required: true, valueAsNumber: true })}
@@ -144,7 +129,6 @@ export default function Admin() {
               <Textarea
                 name="jobBody"
                 rounded={13}
-                onChange={(e) => setBody(e.currentTarget.value)}
                 ref={register({ required: true })}
                 placeholder="Your job body"
               />
@@ -157,9 +141,6 @@ export default function Admin() {
                 size="lg"
                 name="remote"
                 colorScheme="purple"
-                onChange={(e) => {
-                  setIsRemote(e.currentTarget.checked)
-                }}
                 ref={register}
                 defaultIsChecked
               >
@@ -168,9 +149,6 @@ export default function Admin() {
               <Checkbox
                 size="lg"
                 name="flexible"
-                onChange={(e) => {
-                  setIsFlexible(!!e.currentTarget.checked)
-                }}
                 colorScheme="blue"
                 ref={register}
                 defaultIsChecked
