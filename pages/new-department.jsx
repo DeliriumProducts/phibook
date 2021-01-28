@@ -22,7 +22,6 @@ import { useUser } from "../utils/auth/useUser"
 export default function Admin() {
   const { user, loading } = useUser()
   const router = useRouter()
-  const [department, setDepartment] = React.useState("")
   const [departments, setDepartments] = React.useState([])
 
   React.useEffect(() => {
@@ -82,7 +81,6 @@ export default function Admin() {
         })
 
         reset()
-        setDepartment(null)
       })
       .catch((err) => {
         toast({
@@ -91,7 +89,6 @@ export default function Admin() {
         })
 
         reset()
-        setDepartment(null)
       })
       .finally(() => setFormLoading(false))
   }
@@ -118,7 +115,6 @@ export default function Admin() {
                 mb={3}
                 name="depName"
                 rounded={13}
-                onChange={(e) => setDepartment(e.currentTarget.value)}
                 ref={register({ required: true })}
                 placeholder="Department name"
               />
