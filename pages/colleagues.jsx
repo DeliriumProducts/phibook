@@ -57,17 +57,19 @@ const Colleagues = () => {
   }
   return (
     <Flex flexDir="column" justifyContent="center" alignItems="center">
-      <FormLabel mt="2rem">Search for colleagues</FormLabel>
-      <Input
-        variant="filled"
-        placeholder="George Ivanov, IT, 0899, etc..."
-        w={["100%", "30rem"]}
-        bg={bg}
-        value={filter}
-        onChange={(e) => setFilter(e.currentTarget.value)}
-      />
-      <Flex w="100%" minHeight="100%" flexGrow={1} flexDir="column" mt="5rem">
-        <Flex flexDir="column" justifyContent="center" alignItems="center">
+      <Box>
+        <FormLabel mt="2rem">Search for colleagues</FormLabel>
+        <Input
+         variant="filled"
+         placeholder="George Ivanov, IT, 0899, etc..."
+         w={["100%", "30rem"]}
+         bg={bg}
+         value={filter}
+         onChange={(e) => setFilter(e.currentTarget.value)}
+        />
+      </Box>
+      <Flex w="100%" minHeight="100%" flexGrow={1} flexDir="row" mt="5rem" flexWrap="wrap">
+        <Flex flexDir="row" flexWrap="wrap" justifyContent="center" alignItems="center">
           {users.map((wholeUser) => {
             const {
               firstName,
