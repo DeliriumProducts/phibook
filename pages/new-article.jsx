@@ -23,9 +23,6 @@ import { useUser } from "../utils/auth/useUser"
 export default function Admin() {
   const { user, loading } = useUser()
   const router = useRouter()
-  const [title, setTitle] = React.useState("")
-  const [body, setBody] = React.useState("")
-  const [isEvent, setIsEvent] = React.useState(false)
   const [formLoading, setFormLoading] = React.useState(false)
   const { register, handleSubmit, errors, reset } = useForm({
     reValidateMode: "onBlur",
@@ -71,8 +68,6 @@ export default function Admin() {
         })
 
         reset()
-        setTitle(null)
-        setBody(null)
       })
       .catch((err) => {
         toast({
@@ -81,8 +76,6 @@ export default function Admin() {
         })
 
         reset()
-        setTitle(null)
-        setBody(null)
       })
       .finally(() => setFormLoading(false))
   }
@@ -109,7 +102,6 @@ export default function Admin() {
                 mb={5}
                 name="arcTitle"
                 rounded={13}
-                onChange={(e) => setTitle(e.currentTarget.value)}
                 ref={register({ required: true })}
                 placeholder="Your article title"
               />
@@ -122,7 +114,6 @@ export default function Admin() {
               <Textarea
                 name="arcBody"
                 rounded={13}
-                onChange={(e) => setBody(e.currentTarget.value)}
                 ref={register({ required: true })}
                 placeholder="Your article body"
               />
@@ -135,9 +126,6 @@ export default function Admin() {
               size="lg"
               name="event"
               colorScheme="purple"
-              onChange={(e) => {
-                setIsEvent(e.currentTarget.checked)
-              }}
               ref={register}
               defaultIsChecked
             >
