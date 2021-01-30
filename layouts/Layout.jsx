@@ -196,7 +196,7 @@ const Layout = ({ children }) => {
       <IconButton
         aria-label="Toggle dark mode"
         position="fixed"
-        left={5}
+        right={5}
         bottom={5}
         icon={icon}
         onClick={toggleColorMode}
