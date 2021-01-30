@@ -40,6 +40,7 @@ const Sidebar = ({ user }) => {
       p="1rem"
       w={64}
       height="100%"
+      overflowY="scroll"
       flexDirection="column"
       display={{ base: "none", md: "flex" }}
     >
