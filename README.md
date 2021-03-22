@@ -1,3 +1,3 @@
 # Phibook
 
-https://phibook.deliprods.tech
+https://phibook.deliprods.com
